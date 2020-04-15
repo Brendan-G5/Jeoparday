@@ -1,27 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import "./QuestionList.css";
 import QuestionItem from '../QuestionItem/QuestionItem'
 
-function QuestionList( {questions, dailyData} ) {
-
-  const [gameBoard, setGameBoard] = useState(<button onClick = {() => playGame()} className = 'toStart'>Press to Start</button>)
-
-  async function playGame() {
-    setGameBoard('Get ready to type!')
-    await delay(3000);
-    for (let i = 0; i<questions.length; i++ ) {
-      setGameBoard(questions[i].question)
-      await delay(20000)
-   }
-   setGameBoard('Game Done!')
-  }
-
-
-async function delay(ms) {
-  return await new Promise(resolve => setTimeout(resolve, ms));
-}
-
-
+function QuestionList( {questions, dailyData, gameBoard, playGame} ) {
 
 
   return (

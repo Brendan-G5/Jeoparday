@@ -7,11 +7,15 @@ async function getQuestions() {
   );
   const questionList = questions.clues;
   const questionsToGo = [];
+  const takenID = [];
   questionList.forEach(function (Q) {
-    if (Q.invalid_count === null) {
+    if (Q.invalid_count === null && !takenID.includes(Q.id)) {
       questionsToGo.push(Q);
+      takenID.push(Q.id)
     }
   });
+
+
   if (questionsToGo.length >= 5) {
     shuffleArray(questionsToGo);
     const finalQs = questionsToGo.slice(0, 5);
