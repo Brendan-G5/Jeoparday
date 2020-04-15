@@ -1,0 +1,54 @@
+.category {
+  font-size: 30px;
+  text-align: center;
+}
+
+.question-list {
+  font-size: 20px;
+  display: flex;
+  margin: 40px;
+  margin-bottom: 10px;
+}
+
+.playarea {
+  display: flex;
+  flex-direction: column;
+}
+
+.question-spot {
+  display: flex;
+  justify-content: center;
+  background-color: cadetblue;
+  height: 40vh;
+  width: 70vw;
+  min-width: 600px;
+  align-self: center;
+  margin-bottom: 10px;
+  max-height: 600px;
+  min-height: 200px;
+  text-align: center;
+  vertical-align: middle;
+  margin-top:20px;
+  overflow-wrap: break-word;
+}
+
+.answer {
+  height: 5vh;
+  width: 70vw;
+  min-width: 600px;
+  align-self: center;
+  max-height: 100px;
+  min-height: 30px;
+}
+
+.toStart {
+  height: 45px;
+  align-self: center;
+}
+
+.question {
+  color:black;
+  font-size: 30px;
+  align-self: center;
+  padding: 20px;
+}

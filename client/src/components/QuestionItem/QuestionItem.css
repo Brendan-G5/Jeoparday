@@ -1,0 +1,9 @@
+.single-question {
+  flex: 1;
+  margin:10px;
+  background-color: black;
+  height: 100px;
+  width: 15vw;
+  min-width: 100px;
+  max-width: 250px;
+}
