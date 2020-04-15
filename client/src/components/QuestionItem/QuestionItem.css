@@ -6,4 +6,17 @@
   width: 15vw;
   min-width: 100px;
   max-width: 250px;
+  text-align: center;
+}
+
+.anwser {
+  color:white;
+}
+
+.yes {
+  background-color: green;
+}
+
+.no {
+  background-color: red;
 }

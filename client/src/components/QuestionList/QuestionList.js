@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./QuestionList.css";
 import QuestionItem from '../QuestionItem/QuestionItem'
 
-function QuestionList( {questions, dailyData, gameBoard, playGame} ) {
+function QuestionList( {questions, dailyData, gameBoard} ) {
 
 
   return (
@@ -10,7 +10,7 @@ function QuestionList( {questions, dailyData, gameBoard, playGame} ) {
       <div className = 'category'>Today's Category: <b>{dailyData.title}</b></div>
       <div className = 'question-list'>
       {questions.map(question => (
-          <QuestionItem key = {question.id} question={question} />
+          <QuestionItem key = {question.id} question={question}/>
         ))}
       </div>
       <div className = 'question-spot'>

@@ -19,33 +19,30 @@ function App() {
 
 
   async function playGame (input) {
+    console.log(input);
     setGameBoard('Get ready to type!')
-    console.log(input)
     await delay(3000);
     for (let i = 0; i<input.length; i++) {
       setGameBoard(input[i].question)
-      await delay(10000)
+      await delay(5000)
    }
-   setGameBoard('Done Game!')
+   setGameBoard('Done!')
   }
 
   async function delay(ms) {
     return await new Promise(resolve => setTimeout(resolve, ms));
   }
 
-
-
-
   return (
     <div className = 'JEO'>
       <div className="title"> JEOPARDAY! </div>
       <div className="questions">
-        <QuestionList questions = {questions} dailyData = {dailyData} gameBoard = {gameBoard} playGame = {playGame}/>
+        <QuestionList questions = {questions} dailyData = {dailyData} gameBoard = {gameBoard}/>
       </div>
       {/* <div className="data">
         <div className="scatter-plot">
         Here is the Scatter-plot
-        </div>
+        </div
         <div className="pie-chart">
         Here is the pie chart
         </div>

@@ -18,11 +18,16 @@ async function getQuestions() {
 
   if (questionsToGo.length >= 5) {
     shuffleArray(questionsToGo);
-    const finalQs = questionsToGo.slice(0, 5);
+    const finalQs = questionsToGo.slice(0, 5)
+       .map((el) => {
+         let val = Object.assign({}, el);
+         val.reveal = null;
+         return val;
+       });
     const dailyObj = {
       title: questions.title,
       date: Date.now(),
-      result: 0
+      result: 0,
     };
     return [dailyObj, finalQs];
   } else {
