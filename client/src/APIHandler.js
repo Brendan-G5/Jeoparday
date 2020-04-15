@@ -7,11 +7,11 @@ async function getQuestions() {
   );
   const questionList = questions.clues;
   const questionsToGo = [];
-  const takenName = [];
+  const takenAnswer = [];
   questionList.forEach(function (Q) {
-    if (Q.invalid_count === null && !takenName.includes(Q.answer)) {
+    if (Q.invalid_count === null && !takenAnswer.includes(Q.answer)) {
       questionsToGo.push(Q);
-      takenName.push(Q.anwser)
+      takenAnswer.push(Q.answer)
     }
   });
 

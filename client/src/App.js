@@ -62,7 +62,7 @@ function App() {
   }
 
   function checkAnwser() {
-    return true;
+    return false;
   }
 
   return (
