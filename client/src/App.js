@@ -6,27 +6,50 @@ import QuestionList from './components/QuestionList/QuestionList'
 function App() {
   const [questions, setQuestions] = useState([]);
   const [dailyData, setDailyData] = useState({});
-  const [gameBoard, setGameBoard] = useState('')
+  const [gameType, setGameType] = useState('')
 
   useEffect(() => {
     getQuestions()
     .then(data => {
       setDailyData(data[0]);
       setQuestions(data[1]);
-      setGameBoard(<button className = 'toStart' onClick = {() => playGame(data[1])}>Click to Play!</button>)
     });
   }, []);
 
+  function GameBoard (gameType) {
+    console.log(questions)
+    switch (gameType) {
+      case 'playing':
+        return (<div>Get ready to Type</div>)
+      case 0:
+        return (<div>{questions[gameType].question}</div>)
+      case 1:
+        return (<div>{questions[gameType].question}</div>)
+      case 2:
+        return (<div>{questions[gameType].question}</div>)
+      case 3:
+        return (<div>{questions[gameType].question}</div>)
+      case 4:
+        return (<div>{questions[gameType].question}</div>)
+      case 'results':
+        return (<div>Here are res</div>)
+      case 'finished':
+        return (<div>Done for day</div>)
 
-  async function playGame (input) {
-    console.log(input);
-    setGameBoard('Get ready to type!')
-    await delay(3000);
-    for (let i = 0; i<input.length; i++) {
-      setGameBoard(input[i].question)
-      await delay(5000)
-   }
-   setGameBoard('Done!')
+      default:
+        return (<button className = 'toStart' onClick = {() => playGame()}>Click to Play!</button>)
+    }
+  }
+
+
+  async function playGame () {
+    setGameType('playing')
+    await delay(5000)
+    for (let i = 0; i<questions.length; i++) {
+      setGameType(i)
+      await delay(2000)
+    }
+    setGameType('results')
   }
 
   async function delay(ms) {
@@ -37,7 +60,7 @@ function App() {
     <div className = 'JEO'>
       <div className="title"> JEOPARDAY! </div>
       <div className="questions">
-        <QuestionList questions = {questions} dailyData = {dailyData} gameBoard = {gameBoard}/>
+        <QuestionList questions = {questions} dailyData = {dailyData} gameBoard = {GameBoard(gameType)}/>
       </div>
       {/* <div className="data">
         <div className="scatter-plot">
