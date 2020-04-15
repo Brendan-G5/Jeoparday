@@ -47,13 +47,22 @@ function App() {
     await delay(5000)
     for (let i = 0; i<questions.length; i++) {
       setGameType(i)
-      await delay(2000)
+      await delay(3000)
+      if (checkAnwser()) {
+        questions[i].reveal = 'good'
+      } else {
+        questions[i].reveal = 'bad'
+      }
     }
     setGameType('results')
   }
 
   async function delay(ms) {
     return await new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  function checkAnwser() {
+    return true;
   }
 
   return (

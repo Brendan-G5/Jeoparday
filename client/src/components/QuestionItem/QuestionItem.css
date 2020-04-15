@@ -7,6 +7,7 @@
   min-width: 100px;
   max-width: 250px;
   text-align: center;
+  overflow-wrap: break-word;
 }
 
 .anwser {
@@ -14,9 +15,25 @@
 }
 
 .yes {
+  flex: 1;
+  margin:10px;
   background-color: green;
+  height: 100px;
+  width: 15vw;
+  min-width: 100px;
+  max-width: 250px;
+  text-align: center;
+  overflow-wrap: break-word;
 }
 
 .no {
+  flex: 1;
+  margin:10px;
   background-color: red;
+  height: 100px;
+  width: 15vw;
+  min-width: 100px;
+  max-width: 250px;
+  text-align: center;
+  overflow-wrap: break-word;
 }
