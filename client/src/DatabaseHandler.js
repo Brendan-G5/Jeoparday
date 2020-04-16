@@ -4,9 +4,9 @@ const BASE_URL = 'http://localhost:3001';
 
 
 
-// function getAllEvents () {
-//   return fetchRequest('/events')
-// }
+function getAllData () {
+  return fetchRequest('/questions')
+}
 
 function sendToDb (event) {
   event.date = moment(event.date).format('MMM Do, YYYY')
@@ -30,6 +30,6 @@ function fetchRequest(path, options) {
 }
 
 module.exports = {
-  // getAllEvents,
+  getAllData,
   sendToDb
 }

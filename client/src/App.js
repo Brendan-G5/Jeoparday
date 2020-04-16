@@ -2,18 +2,24 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import getQuestions from "./APIHandler";
 import GamePlay from "./components/GamePlay/GamePlay";
+import { getAllData } from "./DatabaseHandler";
+
 
 function App() {
   const [questions, setQuestions] = useState([]);
   const [dailyData, setDailyData] = useState({});
   const [screenState, setScreenState] = useState("load");
+  const [data, setData] = useState({})
 
   useEffect(() => {
     getQuestions().then((data) => {
       setDailyData(data[0]);
       setQuestions(data[1]);
-      setScreenState("play");
+      setScreenState("data");
     });
+    getAllData().then((data) => {
+      setData(data)
+    })
   }, []);
 
   function ToShow() {
@@ -31,7 +37,7 @@ function App() {
           </div>
         );
       case "data":
-        return <div>Look at all this data</div>;
+        return <div>Here is all the data</div>;
       default:
         return <div>This is bad</div>;
     }
