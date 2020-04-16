@@ -1,93 +1,120 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import getQuestions from './APIHandler'
-import QuestionList from './components/QuestionList/QuestionList'
+import getQuestions from "./APIHandler";
+import QuestionList from "./components/QuestionList/QuestionList";
+import { sendToDb } from "./DatabaseHandler";
 
 function App() {
   const [questions, setQuestions] = useState([]);
   const [dailyData, setDailyData] = useState({});
-  const [gameType, setGameType] = useState('')
+  const [gameType, setGameType] = useState();
+  const [screenState, setScreenState] = useState("play");
 
   useEffect(() => {
-    getQuestions()
-    .then(data => {
+    getQuestions().then((data) => {
       setDailyData(data[0]);
       setQuestions(data[1]);
+      setScreenState("play");
     });
   }, []);
 
-  function GameBoard (gameType) {
-    console.log(questions)
-    switch (gameType) {
-      case 'playing':
-        return (<div>Get ready to Type</div>)
-      case 0:
-        return (<div>{questions[gameType].question}</div>)
-      case 1:
-        return (<div>{questions[gameType].question}</div>)
-      case 2:
-        return (<div>{questions[gameType].question}</div>)
-      case 3:
-        return (<div>{questions[gameType].question}</div>)
-      case 4:
-        return (<div>{questions[gameType].question}</div>)
-      case 'results':
-        return (<div>Here are res</div>)
-      case 'finished':
-        return (<div>Done for day</div>)
-
+  function GameBoard(gameType) {
+    switch (typeof gameType) {
+      case "number":
+        return <div>{questions[gameType].question}</div>;
+      case "string":
+        switch (gameType) {
+          case "results":
+            return (
+              <div>
+                <div>{dailyData.result}/5</div>
+                <div onClick={() => viewData()}>Submit and View Data</div>{" "}
+              </div>
+            );
+          case "done":
+            return <div>Come Back Tomorrow</div>;
+          default:
+            return <div>Done for day</div>;
+        }
       default:
-        return (<button className = 'toStart' onClick = {() => playGame()}>Click to Play!</button>)
+        return (
+          <button className="toStart" onClick={() => setGameType(0)}>
+            Click to Play!
+          </button>
+        );
     }
   }
 
-
-  async function playGame () {
-    setGameType('playing')
-    await delay(5000)
-    for (let i = 0; i<questions.length; i++) {
-      setGameType(i)
-      await delay(3000)
-      if (checkAnwser()) {
-        questions[i].reveal = 'good'
-      } else {
-        questions[i].reveal = 'bad'
-      }
+  function submitAnswer(answer, counter) {
+    console.log(counter, 'here is counter')
+    if (typeof gameType !== "number") {
+      return false;
     }
-    setGameType('results')
+    if (checkAnswer(answer, counter)) {
+      questions[counter].reveal = "good";
+    } else {
+      questions[counter].reveal = "bad";
+    }
+    if (counter < 4) {
+      setGameType(counter + 1);
+    } else {
+      setGameType("results");
+    }
+    return true;
   }
 
-  async function delay(ms) {
-    return await new Promise(resolve => setTimeout(resolve, ms));
+  function checkAnswer(answer, counter) {
+    if (answer.toLowerCase() === "true" || answer.toLowerCase() === questions[counter].answer.toLowerCase()) {
+      setDailyData({ ...dailyData, result: dailyData.result + 1 });
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  function checkAnwser() {
-    return false;
+  function viewData() {
+    sendToDb(dailyData);
+    setGameType('done')
   }
+
+  // function Display () {
+  //   if (screenState === 'load') {
+  //     return (
+  //       <h2>loading...</h2>
+  //     )
+  //   }
+  //   if (screenState === "play") {
+  //     return (
+  //       <div className="questions">
+  //         <QuestionList
+  //           questions={questions}
+  //           dailyData={dailyData}
+  //           gameBoard={GameBoard(gameType)}
+  //           submitAnswer={submitAnswer}
+  //         />
+  //       </div>
+  //     );
+  //   }
+  // };
 
   return (
-    <div className = 'JEO'>
+    <div className="JEO">
       <div className="title"> JEOPARDAY! </div>
       <div className="questions">
-        <QuestionList questions = {questions} dailyData = {dailyData} gameBoard = {GameBoard(gameType)}/>
-      </div>
-      {/* <div className="data">
-        <div className="scatter-plot">
-        Here is the Scatter-plot
-        </div
-        <div className="pie-chart">
-        Here is the pie chart
+          <QuestionList
+            questions={questions}
+            dailyData={dailyData}
+            gameBoard={GameBoard(gameType)}
+            submitAnswer={submitAnswer}
+          />
         </div>
-      </div> */}
     </div>
   );
 }
 
 export default App;
 
-
-
-  /*{
+/*{
     "title": "e.t. 20th anniversary",
     "date": "2002-09-11T12:00:00.000Z",
     "result":0,

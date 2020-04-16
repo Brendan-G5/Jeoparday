@@ -16,7 +16,7 @@ async function addQs (req, res) {
   try {
     const newQ = await Model.create({
       title: req.body.title,
-      clues: req.body.clues,
+      result: req.body.result,
       date: req.body.date,
     });
     res.status(200);

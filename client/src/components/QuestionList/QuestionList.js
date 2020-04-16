@@ -2,8 +2,24 @@ import React, {useState} from "react";
 import "./QuestionList.css";
 import QuestionItem from '../QuestionItem/QuestionItem'
 
-function QuestionList( {questions, dailyData, gameBoard} ) {
+function QuestionList( {questions, dailyData, gameBoard, submitAnswer} ) {
 
+  const [answer, setAnswer] = useState('');
+  const [counter, setCounter] = useState(0);
+
+
+  function submitResponse(event) {
+    event.preventDefault();
+    let playing = submitAnswer(answer, counter)
+    if (playing) {
+    setCounter(counter + 1);
+    }
+    setAnswer('');
+  }
+
+  function handleChange (event) {
+    setAnswer(event.target.value);
+  }
 
   return (
     <div className = 'playarea'>
@@ -16,7 +32,9 @@ function QuestionList( {questions, dailyData, gameBoard} ) {
       <div className = 'question-spot'>
         <div className = 'question'>{gameBoard}</div>
       </div>
-      <input className= 'answer' placeholder='Type here...'></input>
+      <form onSubmit = {submitResponse}>
+        <input className= 'answer' placeholder='Type here...' value = {answer} onChange = {handleChange}></input>
+      </form>
     </div>
   );
 }

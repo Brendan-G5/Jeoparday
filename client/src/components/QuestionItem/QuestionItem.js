@@ -4,7 +4,7 @@ import "./QuestionItem.css";
 function QuestionItem( {question} ) {
 
 
-  let anw = '';
+  let anw = (<div className = 'single-question'></div>)
 
   if (question.reveal === 'good') {
     anw = <div className = 'anwser yes'>{question.answer}</div>;
@@ -13,7 +13,7 @@ function QuestionItem( {question} ) {
   }
 
   return (
-    <div className = 'single-question'>
+    <div>
       {anw}
     </div>
   );
