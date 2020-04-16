@@ -1,15 +1,12 @@
-import React, {useState} from "react";
-import "./QuestionList.css";
-import QuestionItem from '../QuestionItem/QuestionItem'
+import React, { useState } from "react";
+import "./GamePlay.css";
+import QuestionItem from "../QuestionItem/QuestionItem";
 import { sendToDb } from "../../DatabaseHandler";
 
-
-function QuestionList( {questions, dailyData, setScreenState} ) {
-
-  const [answer, setAnswer] = useState('');
+function GamePlay({ questions, dailyData, setScreenState }) {
+  const [answer, setAnswer] = useState("");
   const [counter, setCounter] = useState(0);
   const [gameType, setGameType] = useState();
-
 
   function GameBoard(gameType) {
     switch (typeof gameType) {
@@ -38,7 +35,9 @@ function QuestionList( {questions, dailyData, setScreenState} ) {
     }
   }
 
-  function submitAnswer(answer, counter) {
+  function submitResponse(event) {
+    event.preventDefault();
+    setAnswer("");
     if (typeof gameType !== "number") {
       return false;
     }
@@ -52,12 +51,16 @@ function QuestionList( {questions, dailyData, setScreenState} ) {
     } else {
       setGameType("results");
     }
+    setCounter(counter + 1);
     return true;
   }
 
   function checkAnswer(answer, counter) {
-    if (answer.toLowerCase() === "true" || answer.toLowerCase() === questions[counter].answer.toLowerCase()) {
-      dailyData.result++
+    if (
+      answer.toLowerCase() === "true" ||
+      answer.toLowerCase() === questions[counter].answer.toLowerCase()
+    ) {
+      dailyData.result++;
       return true;
     } else {
       return false;
@@ -66,45 +69,42 @@ function QuestionList( {questions, dailyData, setScreenState} ) {
 
   async function viewData() {
     sendToDb(dailyData);
-    setGameType('done')
+    setGameType("done");
     await delay(1000);
-    setScreenState('data')
+    setScreenState("data");
   }
 
   async function delay(ms) {
-    return await new Promise(resolve => setTimeout(resolve, ms));
+    return await new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-
-  function submitResponse(event) {
-    event.preventDefault();
-    let playing = submitAnswer(answer, counter)
-    if (playing) {
-      setCounter(counter + 1);
-    }
-    setAnswer('');
-  }
-
-  function handleChange (event) {
+  function handleChange(event) {
     setAnswer(event.target.value);
   }
 
   return (
-    <div className = 'playarea'>
-      <div className = 'category'>Today's Category: <b>{dailyData.title}</b></div>
-      <div className = 'question-list'>
-      {questions.map(question => (
-          <QuestionItem key = {question.id} question={question}/>
+    <div className="playarea">
+      <div className="category">
+        Today's Category: <b>{dailyData.title}</b>
+      </div>
+      <div className="question-list">
+        {questions.map((question) => (
+          <QuestionItem key={question.id} question={question} />
         ))}
       </div>
-      <div className = 'question-spot'>
-        <div className = 'question'>{GameBoard(gameType)}</div>
+      <div className="question-spot">
+        <div className="question">{GameBoard(gameType)}</div>
       </div>
-      <form onSubmit = {submitResponse}>
-        <input className= 'answer' placeholder='Type here...' value = {answer} onChange = {handleChange}></input>
+      <form onSubmit={submitResponse}>
+        <input
+          className="answer"
+          placeholder="Type here..."
+          value={answer}
+          onChange={handleChange}
+        ></input>
       </form>
     </div>
   );
 }
 
-export default QuestionList;
+export default GamePlay;

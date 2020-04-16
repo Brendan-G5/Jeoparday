@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import getQuestions from "./APIHandler";
-import QuestionList from './components/QuestionList/QuestionList'
+import GamePlay from "./components/GamePlay/GamePlay";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -16,38 +16,33 @@ function App() {
     });
   }, []);
 
-
-
-
-  function ToShow () {
+  function ToShow() {
     switch (screenState) {
-      case 'load':
-        return (<div>Loading</div>)
-      case 'play':
+      case "load":
+        return <div>Loading</div>;
+      case "play":
         return (
-    <div className="questions">
-    <QuestionList
-      questions={questions}
-      dailyData={dailyData}
-      setScreenState={setScreenState}
-    />
-  </div>)
-      case 'data':
-        return (<div>Look at all this data</div>)
+          <div className="questions">
+            <GamePlay
+              questions={questions}
+              dailyData={dailyData}
+              setScreenState={setScreenState}
+            />
+          </div>
+        );
+      case "data":
+        return <div>Look at all this data</div>;
       default:
-        return (<div>This is bad</div>)
+        return <div>This is bad</div>;
     }
   }
-
-
 
   return (
     <div className="JEO">
       <div className="title"> JEOPARDAY! </div>
-       <ToShow />
+      <ToShow />
     </div>
   );
 }
 
 export default App;
-
