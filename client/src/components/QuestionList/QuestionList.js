@@ -1,18 +1,86 @@
 import React, {useState} from "react";
 import "./QuestionList.css";
 import QuestionItem from '../QuestionItem/QuestionItem'
+import { sendToDb } from "../../DatabaseHandler";
 
-function QuestionList( {questions, dailyData, gameBoard, submitAnswer} ) {
+
+function QuestionList( {questions, dailyData, setScreenState} ) {
 
   const [answer, setAnswer] = useState('');
   const [counter, setCounter] = useState(0);
+  const [gameType, setGameType] = useState();
+
+
+  function GameBoard(gameType) {
+    switch (typeof gameType) {
+      case "number":
+        return <div>{questions[gameType].question}</div>;
+      case "string":
+        switch (gameType) {
+          case "results":
+            return (
+              <div>
+                <div>{dailyData.result}/5</div>
+                <div onClick={() => viewData()}>Submit and View Data</div>{" "}
+              </div>
+            );
+          case "done":
+            return <div>Come Back Tomorrow</div>;
+          default:
+            return <div>Done for day</div>;
+        }
+      default:
+        return (
+          <button className="toStart" onClick={() => setGameType(0)}>
+            Click to Play!
+          </button>
+        );
+    }
+  }
+
+  function submitAnswer(answer, counter) {
+    if (typeof gameType !== "number") {
+      return false;
+    }
+    if (checkAnswer(answer, counter)) {
+      questions[counter].reveal = "good";
+    } else {
+      questions[counter].reveal = "bad";
+    }
+    if (counter < 4) {
+      setGameType(counter + 1);
+    } else {
+      setGameType("results");
+    }
+    return true;
+  }
+
+  function checkAnswer(answer, counter) {
+    if (answer.toLowerCase() === "true" || answer.toLowerCase() === questions[counter].answer.toLowerCase()) {
+      dailyData.result++
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  async function viewData() {
+    sendToDb(dailyData);
+    setGameType('done')
+    await delay(1000);
+    setScreenState('data')
+  }
+
+  async function delay(ms) {
+    return await new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 
   function submitResponse(event) {
     event.preventDefault();
     let playing = submitAnswer(answer, counter)
     if (playing) {
-    setCounter(counter + 1);
+      setCounter(counter + 1);
     }
     setAnswer('');
   }
@@ -30,7 +98,7 @@ function QuestionList( {questions, dailyData, gameBoard, submitAnswer} ) {
         ))}
       </div>
       <div className = 'question-spot'>
-        <div className = 'question'>{gameBoard}</div>
+        <div className = 'question'>{GameBoard(gameType)}</div>
       </div>
       <form onSubmit = {submitResponse}>
         <input className= 'answer' placeholder='Type here...' value = {answer} onChange = {handleChange}></input>
