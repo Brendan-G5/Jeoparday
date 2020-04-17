@@ -5,6 +5,9 @@ import GamePlay from "./components/GamePlay/GamePlay";
 import DataPage from "./components/DataPage/DataPage";
 import { getAllData } from "./DatabaseHandler";
 
+const JeoPhoto = require('./assets/Jeoparday.png')
+const moment = require('moment');
+
 function App() {
   const [questions, setQuestions] = useState([]);
   const [dailyData, setDailyData] = useState({});
@@ -12,13 +15,27 @@ function App() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    getQuestions().then((data) => {
-      setDailyData(data[0]);
-      setQuestions(data[1]);
-      setScreenState("play");
-      // playedToday()
+    getQuestions().then((newData) => {
+      setDailyData(newData[0]);
+      setQuestions(newData[1]);
+      getAllData().then((newData) => {
+        setData(newData);
+        if (checkPlayed(newData)) {
+          setScreenState("data");
+        } else {
+          setScreenState("play")
+        }
     });
+    });
+
   }, []);
+
+  function checkPlayed(newData) {
+    let recent = (newData.pop()).date
+    let today = moment(Date.now()).format('DD-MM-YYYY')
+    if (today === recent) return true;
+    return false;
+  }
 
   function playedToday() {
     getAllData().then((data) => {
@@ -63,7 +80,9 @@ function App() {
 
   return (
     <div className="JEO">
-      <div className="title"> JEOPARDAY! </div>
+      <div className="title">
+         <img className = "title" src = {JeoPhoto}/>
+         </div>
       <ToShow />
     </div>
   );

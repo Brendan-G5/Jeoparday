@@ -4,8 +4,12 @@
 }
 
 .title {
-  font-size: 40px;
   align-self: center;
+  display: block;
+  min-width:90vw;
+  max-height:20vh;
+  width: auto;
+  height: auto;
 }
 
 .questions {

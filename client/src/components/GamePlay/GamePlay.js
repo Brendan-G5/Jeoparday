@@ -19,7 +19,7 @@ function GamePlay({ questions, dailyData, setScreenState, playedToday }) {
             return (
               <div>
                 <div>{dailyData.result}/5</div>
-                <div onClick={() => viewData()}>View Data</div>{" "}
+                <div onClick={() => viewData()}>View Data</div>
               </div>
             );
           case "done":
@@ -50,7 +50,7 @@ function GamePlay({ questions, dailyData, setScreenState, playedToday }) {
     if (counter < 4) {
       setGameType(counter + 1);
     } else {
-      sendToDb(dailyData);
+      // sendToDb(dailyData);  /TURN THIS BACK ON TO SEND DATA TO DB
       setGameType("results");
     }
     setCounter(counter + 1);

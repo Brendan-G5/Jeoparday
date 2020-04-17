@@ -3,7 +3,7 @@ import "./PieChart.css";
 import C3Chart from "react-c3js";
 import "c3/c3.css";
 
-function PieChart({ data }) {
+function PieChart({ data, colors }) {
   let pieData = [0, 0, 0, 0, 0, 0];
 
   data.forEach((item) => {
@@ -27,23 +27,47 @@ function PieChart({ data }) {
         ["5", pieData[5]],
       ],
       type: "pie",
-      onclick: function (d, i) {
-        console.log("onclick", d, i);
+      colors: {
+        0: colors[0],
+        1: colors[1],
+        2: colors[2],
+        3: colors[3],
+        4: colors[4],
+        5: colors[5],
       },
-      onmouseover: function (d, i) {
-        console.log("onmouseover", d, i);
-      },
-      onmouseout: function (d, i) {
-        console.log("onmouseout", d, i);
+      order: null
+    },
+    legend: {
+      show: true,
+    },
+    tooltip: {
+      format: {
+        title: function (d) {
+          "title";
+        },
+        value: function (value, ratio, id, d) {
+          console.log(d, "d");
+          console.log(value, "value");
+          console.log(ratio, "ratio");
+          console.log(id, "id");
+          return "value";
+        },
+        name: function (ratio) {
+          return ratio;
+        },
       },
     },
   };
 
   return (
-    <div className = 'pie-container'>
-      <C3Chart data={pieChartData.data} className ="pie" />
+    <div className="pie-container">
+      <C3Chart
+        data={pieChartData.data}
+        legend={pieChartData.legend}
+        tooltip={pieChartData.tooltip}
+      />
     </div>
-  )
+  );
 }
 
 export default PieChart;

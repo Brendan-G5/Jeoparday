@@ -1,4 +1,4 @@
-import React, { setState, useState } from "react";
+import React, { useState } from "react";
 import "./DataPage.css";
 import LineChart from "../LineChart/LineChart";
 import PieChart from "../PieChart/PieChart";
@@ -6,6 +6,15 @@ import PieChart from "../PieChart/PieChart";
 function DataPage({ data }) {
 
   const [selector, setSelector] = useState('all')
+
+  const colors = [
+    "#89d2f1", //color for 0
+    "#5caed1", //color 1
+    "#3e94b8", //color 2
+    "#217ca3", //color 3
+    "#0e5f82", //color 4
+    "#104e69" //color 5
+  ];
 
 
 
@@ -15,7 +24,7 @@ function DataPage({ data }) {
   }
 
   let dataToVis = () => {
-    if (typeof selector !== 'all'){
+    if (selector !== 'all'){
       let number = Number(selector);
       return data.slice(-(number));
     } else {
@@ -27,7 +36,7 @@ function DataPage({ data }) {
     if (data.length >1) {
       return (
       <div className="data-scatter">
-        <LineChart data={dataToVis()} />
+        <LineChart data={dataToVis()} colors = {colors}/>
       </div>
       )
     } else {
@@ -51,7 +60,7 @@ function DataPage({ data }) {
           </div>
         </div>
         <div className="data-pie">
-          <PieChart data={dataToVis()} />
+          <PieChart data={dataToVis()} colors = {colors}/>
         </div>
       </div>
       {displayLine()}
