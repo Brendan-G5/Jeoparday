@@ -1,0 +1,22 @@
+.data-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-text {
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100vw;
+  align-items: center;
+}
+
+.data-pie{
+  justify-content: right;
+  margin-left: 15vw;
+}
+
+.data-scatter {
+  margin: 30px;
+  width: 90%;
+  align-self: center;
+}

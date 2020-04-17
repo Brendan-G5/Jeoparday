@@ -39,7 +39,11 @@ function PieChart({ data }) {
     },
   };
 
-  return <C3Chart data={pieChartData.data} axis={pieChartData.axis} legend={pieChartData.legend} />;
+  return (
+    <div className = 'pie-container'>
+      <C3Chart data={pieChartData.data} className ="pie" />
+    </div>
+  )
 }
 
 export default PieChart;

@@ -1,59 +1,49 @@
-import React from "react";
+import React, { setState, useState } from "react";
 import "./DataPage.css";
-import C3Chart from "react-c3js";
-import "c3/c3.css";
-import LineChart from '../LineChart/LineChart'
-import PieChart from '../PieChart/PieChart'
+import LineChart from "../LineChart/LineChart";
+import PieChart from "../PieChart/PieChart";
 
 function DataPage({ data }) {
 
+  const [selector, setSelector] = useState('all')
 
-  let pieData = [0, 0, 0, 0, 0, 0];
 
-  data.forEach((item) => {
-    if (typeof item.result === "number") {
-      if (pieData[item.result]) {
-        pieData[item.result]++;
-      } else {
-        pieData[item.result] = 1;
-      }
+
+  function handleNumber(event) {
+    console.log(event.target.value)
+    setSelector(event.target.value)
+  }
+
+  let dataToVis = () => {
+    if (typeof selector !== 'all'){
+      let number = Number(selector);
+      console.log(number);
+      return data.slice(-(Number(selector)))
+    } else {
+      return data;
     }
-  });
-
-  const PieChart = ({ data }) => (
-    <C3Chart data={data.data} axis={data.axis} legend={data.legend} />
-  );
-
-  const pieChartData = {
-    data: {
-      columns: [
-        ["0", pieData[0]],
-        ["1", pieData[1]],
-        ["2", pieData[2]],
-        ["3", pieData[3]],
-        ["4", pieData[4]],
-        ["5", pieData[5]],
-      ],
-      type: "pie",
-      onclick: function (d, i) {
-        console.log("onclick", d, i);
-      },
-      onmouseover: function (d, i) {
-        console.log("onmouseover", d, i);
-      },
-      onmouseout: function (d, i) {
-        console.log("onmouseout", d, i);
-      },
-    },
-  };
+  }
 
   return (
-    <div>
-      <div>
-        <PieChart data={pieChartData} />
+    <div className="data-page">
+      <div className="data-top">
+        <div className="data-text">
+          <div>
+            <select id="game-selector" onChange = {handleNumber} value = {selector}>
+              <option value="all" selected>All Games</option>
+              <option value="5">Past 5 Games</option>
+              <option value="20">Past 20 Games</option>
+              <option value="50">Past 50 Games</option>
+              <option value="100">Past 100 Games</option>
+            </select>
+          </div>
+        </div>
+        <div className="data-pie">
+          <PieChart data={dataToVis()} />
+        </div>
       </div>
-      <div>
-        <LineChart data={data} />
+      <div className="data-scatter">
+        <LineChart data={dataToVis()} />
       </div>
     </div>
   );
