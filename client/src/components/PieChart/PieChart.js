@@ -1,13 +1,9 @@
 import React from "react";
-import "./DataPage.css";
+import "./PieChart.css";
 import C3Chart from "react-c3js";
 import "c3/c3.css";
-import LineChart from '../LineChart/LineChart'
-import PieChart from '../PieChart/PieChart'
 
-function DataPage({ data }) {
-
-
+function PieChart({ data }) {
   let pieData = [0, 0, 0, 0, 0, 0];
 
   data.forEach((item) => {
@@ -19,10 +15,6 @@ function DataPage({ data }) {
       }
     }
   });
-
-  const PieChart = ({ data }) => (
-    <C3Chart data={data.data} axis={data.axis} legend={data.legend} />
-  );
 
   const pieChartData = {
     data: {
@@ -47,16 +39,7 @@ function DataPage({ data }) {
     },
   };
 
-  return (
-    <div>
-      <div>
-        <PieChart data={pieChartData} />
-      </div>
-      <div>
-        <LineChart data={data} />
-      </div>
-    </div>
-  );
+  return <C3Chart data={pieChartData.data} axis={pieChartData.axis} legend={pieChartData.legend} />;
 }
 
-export default DataPage;
+export default PieChart;

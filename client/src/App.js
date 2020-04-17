@@ -4,10 +4,6 @@ import getQuestions from "./APIHandler";
 import GamePlay from "./components/GamePlay/GamePlay";
 import DataPage from "./components/DataPage/DataPage";
 import { getAllData } from "./DatabaseHandler";
-const moment = require('moment')
-
-
-
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -15,40 +11,20 @@ function App() {
   const [screenState, setScreenState] = useState("load");
   const [data, setData] = useState({});
 
-
   useEffect(() => {
-    let played = () => {
-      getAllData().then((data) => {
-        let recent = data.pop();
-        let today = moment(Date.now()).format('DD-MM-YYYY');
-        console.log(recent.date)
-        console.log(today)
-        if (recent.date === today) return true;
-        return false;
-    })}
-
-    if (!played()) {
-      getQuestions().then((data) => {
-        setDailyData(data[0]);
-        setQuestions(data[1]);
-        setScreenState("play");
-      });
-    } else {
-      playedToday(false)
-    }
+    getQuestions().then((data) => {
+      setDailyData(data[0]);
+      setQuestions(data[1]);
+      setScreenState("play");
+      playedToday()
+    });
   }, []);
 
-
-
-  function playedToday(first = true) {
-    if (first) {
-      getAllData().then((data) => {
-      setData(data)
-      setScreenState('data')
-    })
-    } else {
-      setScreenState('data')
-    }
+  function playedToday() {
+    getAllData().then((data) => {
+      setData(data);
+      setScreenState("data");
+    });
   }
 
   function ToShow() {
@@ -62,14 +38,14 @@ function App() {
               questions={questions}
               dailyData={dailyData}
               setScreenState={setScreenState}
-              playedToday = {playedToday}
+              playedToday={playedToday}
             />
           </div>
         );
       case "data":
         return (
           <div>
-            <DataPage data = {data}/>
+            <DataPage data={data} />
           </div>
         );
       default:
