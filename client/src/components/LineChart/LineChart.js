@@ -16,7 +16,7 @@ function LineChart({ data }) {
   const lineChartData = {
     data: {
       x: "Dates",
-      xFormat: "%H:%M:%S",
+      xFormat: "%d-%m-%Y",
       columns: [
         ["Dates", ...dataArrays.date],
         ["Score", ...dataArrays.result],
@@ -27,7 +27,7 @@ function LineChart({ data }) {
       x: {
         type: "timeseries",
         tick: {
-          format: "%H:%M:%S",
+          format: "%d-%m-%Y",
         },
       },
     },

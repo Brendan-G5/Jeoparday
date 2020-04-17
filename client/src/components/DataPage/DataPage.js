@@ -17,11 +17,23 @@ function DataPage({ data }) {
   let dataToVis = () => {
     if (typeof selector !== 'all'){
       let number = Number(selector);
-      console.log(number);
-      return data.slice(-(Number(selector)))
+      return data.slice(-(number));
     } else {
       return data;
     }
+  }
+
+  let displayLine = () => {
+    if (data.length >1) {
+      return (
+      <div className="data-scatter">
+        <LineChart data={dataToVis()} />
+      </div>
+      )
+    } else {
+      return (<div>Play again tomorrow in order to see graph</div>)
+    }
+
   }
 
   return (
@@ -31,10 +43,10 @@ function DataPage({ data }) {
           <div>
             <select id="game-selector" onChange = {handleNumber} value = {selector}>
               <option value="all" selected>All Games</option>
-              <option value="5">Past 5 Games</option>
-              <option value="20">Past 20 Games</option>
+              <option value="10">Past 10 Games</option>
               <option value="50">Past 50 Games</option>
               <option value="100">Past 100 Games</option>
+              <option value="200">Past 200 Games</option>
             </select>
           </div>
         </div>
@@ -42,9 +54,7 @@ function DataPage({ data }) {
           <PieChart data={dataToVis()} />
         </div>
       </div>
-      <div className="data-scatter">
-        <LineChart data={dataToVis()} />
-      </div>
+      {displayLine()}
     </div>
   );
 }

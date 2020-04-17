@@ -16,7 +16,7 @@ function App() {
       setDailyData(data[0]);
       setQuestions(data[1]);
       setScreenState("play");
-      playedToday()
+      // playedToday()
     });
   }, []);
 
@@ -43,11 +43,19 @@ function App() {
           </div>
         );
       case "data":
-        return (
-          <div>
-            <DataPage data={data} />
-          </div>
-        );
+        console.log(data)
+        if (data.length) {
+          return (
+            <div>
+              <DataPage data={data} />
+            </div>
+          );
+          }
+        else {
+          return (
+            <div>No data yet</div>
+          )
+        }
       default:
         return <div>This is bad</div>;
     }
