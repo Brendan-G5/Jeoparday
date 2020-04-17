@@ -3,7 +3,8 @@ import "./GamePlay.css";
 import QuestionItem from "../QuestionItem/QuestionItem";
 import { sendToDb } from "../../DatabaseHandler";
 
-function GamePlay({ questions, dailyData, setScreenState }) {
+
+function GamePlay({ questions, dailyData, setScreenState, playedToday }) {
   const [answer, setAnswer] = useState("");
   const [counter, setCounter] = useState(0);
   const [gameType, setGameType] = useState();
@@ -18,7 +19,7 @@ function GamePlay({ questions, dailyData, setScreenState }) {
             return (
               <div>
                 <div>{dailyData.result}/5</div>
-                <div onClick={() => viewData()}>Submit and View Data</div>{" "}
+                <div onClick={() => viewData()}>View Data</div>{" "}
               </div>
             );
           case "done":
@@ -49,6 +50,7 @@ function GamePlay({ questions, dailyData, setScreenState }) {
     if (counter < 4) {
       setGameType(counter + 1);
     } else {
+      sendToDb(dailyData);
       setGameType("results");
     }
     setCounter(counter + 1);
@@ -68,10 +70,10 @@ function GamePlay({ questions, dailyData, setScreenState }) {
   }
 
   async function viewData() {
-    sendToDb(dailyData);
     setGameType("done");
-    await delay(1000);
-    setScreenState("data");
+    await delay(500);
+    setScreenState("load");
+    playedToday();
   }
 
   async function delay(ms) {
