@@ -13,12 +13,10 @@ function App() {
   const [dailyData, setDailyData] = useState({});
   const [screenState, setScreenState] = useState("load");
   const [data, setData] = useState([]);
-  const [firstItem, setFirstItem] = useState({});  //A bad fix to a problem i could not solve...
 
   useEffect(() => {
     getAllData().then((userData) => {
       if (userData.length) {
-        setFirstItem(userData[0])
         setData(userData);
         if (checkPlayed(userData)) {
           setScreenState("data");
@@ -44,6 +42,7 @@ function App() {
   function playedToday() {
     getAllData().then((userData) => {
       setData(userData);
+      console.log(data);
       setScreenState("data");
     });
   }
@@ -72,7 +71,7 @@ function App() {
         if (data.length) {
           return (
             <div>
-              <DataPage data={data} firstItem = {firstItem}/>
+              <DataPage data={data}/>
             </div>
           );
         } else {
@@ -86,7 +85,7 @@ function App() {
   return (
     <div className="JEO">
       <div className="title">
-        <img className="title" src={JeoPhoto} alt = "JEOPARDAY" />
+        <img className="title" src={JeoPhoto} ALY />
       </div>
       <ToShow />
     </div>

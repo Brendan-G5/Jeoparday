@@ -7,13 +7,11 @@ function PieChart({ data, colors }) {
   let pieData = [0, 0, 0, 0, 0, 0];
 
   data.forEach((item) => {
-    if (typeof item.result === "number") {
       if (pieData[item.result]) {
         pieData[item.result]++;
       } else {
         pieData[item.result] = 1;
       }
-    }
   });
 
   const pieChartData = {
