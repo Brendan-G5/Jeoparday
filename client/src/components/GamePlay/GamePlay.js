@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "./GamePlay.css";
 import QuestionItem from "../QuestionItem/QuestionItem";
 import { sendToDb } from "../../DatabaseHandler";
+const JeoHost = require("../../assets/JeoHost.png");
+const JeoCont = require("../../assets/JeoCont.png");
 
-
-function GamePlay({ questions, dailyData, setScreenState, doneGame}) {
+function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
   const [answer, setAnswer] = useState("");
   const [counter, setCounter] = useState(0);
   const [gameType, setGameType] = useState();
@@ -30,7 +31,7 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame}) {
       default:
         return (
           <button className="toStart" onClick={() => setGameType(0)}>
-            Click to Play!
+            Play
           </button>
         );
     }
@@ -78,27 +79,36 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame}) {
     setAnswer(event.target.value);
   }
 
+
   return (
     <div className="playarea">
       <div className="category">
-        Today's Category: <b>{dailyData.title}</b>
+        Today's Category is: <b className = "category-name">{dailyData.title}</b>
       </div>
       <div className="question-list">
         {questions.map((question) => (
           <QuestionItem key={question.id} question={question} />
         ))}
       </div>
-      <div className="question-spot">
-        <div className="question">{GameBoard(gameType)}</div>
+      <div className="mid-level">
+        <div className="cartoon">
+          <img src={JeoHost} ALY />
+        </div>
+        <div className = "holder">
+          <div className="question-spot">{GameBoard(gameType)}</div>
+          <form onSubmit={submitResponse}>
+            <input
+              className="answer"
+              placeholder="Type here..."
+              value={answer}
+              onChange={handleChange}
+            ></input>
+          </form>
+        </div>
+        <div className="cartoon">
+          <img src={JeoCont} ALY />
+        </div>
       </div>
-      <form onSubmit={submitResponse}>
-        <input
-          className="answer"
-          placeholder="Type here..."
-          value={answer}
-          onChange={handleChange}
-        ></input>
-      </form>
     </div>
   );
 }

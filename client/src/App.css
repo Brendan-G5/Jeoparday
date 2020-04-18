@@ -1,12 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
+
+
 .JEO {
   display: flex;
   flex-direction: column;
 }
 
+html {
+  background-color: black;
+}
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
 .title {
   align-self: center;
   display: block;
-  min-width:90vw;
+  max-width:90vw;
   max-height:20vh;
   width: auto;
   height: auto;

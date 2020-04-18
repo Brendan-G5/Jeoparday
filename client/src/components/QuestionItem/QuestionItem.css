@@ -1,7 +1,8 @@
 .single-question {
+  display: flex;
   flex: 1;
   margin:10px;
-  background-color: black;
+  background-color: #217ca3;
   height: 100px;
   width: 15vw;
   min-width: 100px;
@@ -10,7 +11,19 @@
   overflow-wrap: break-word;
   color:white;
   font-size: 50px;
+  justify-content: space-evenly;
+}
 
+.answer-spot {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid white;
+  margin: 5px;
+}
+
+.answer-spot:hover {
+  background-color: rgb(228, 198, 156);
 }
 
 .answer-box {
@@ -18,25 +31,22 @@
 }
 
 .yes {
+  background-color: #3e94b8;
+}
+
+.no, .yes {
   flex: 1;
   margin:10px;
-  background-color: green;
   height: 100px;
   width: 15vw;
   min-width: 100px;
   max-width: 250px;
   text-align: center;
   overflow-wrap: break-word;
+  font-size: 25px;
 }
 
 .no {
-  flex: 1;
-  margin:10px;
-  background-color: red;
-  height: 100px;
-  width: 15vw;
-  min-width: 100px;
-  max-width: 250px;
-  text-align: center;
-  overflow-wrap: break-word;
+  background-color: #1a4355;
+  color:grey;
 }
