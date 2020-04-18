@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./DataPage.css";
 import LineChart from "../LineChart/LineChart";
 import PieChart from "../PieChart/PieChart";
@@ -13,6 +13,20 @@ function DataPage({ data }) {
     "#0e5f82", //color 4
     "#104e69", //color 5
   ];
+
+
+  let LineGraph = () => {
+    if (data.length > 1) {
+      return (
+        <LineChart data={data} colors={colors} />
+      )
+    } else {
+      return (
+      <div>Come back tomorrow to see Data</div>
+      )
+    }
+  }
+
 
   return (
     <div className="data-page">
@@ -29,7 +43,7 @@ function DataPage({ data }) {
         </div>
       </div>
         <div className="data-scatter">
-          <LineChart data={data} colors={colors} />
+          {LineGraph()}
         </div>
     </div>
   );

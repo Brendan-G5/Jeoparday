@@ -36,15 +36,13 @@ function App() {
     let recent = newData[newData.length-1].date;
     let today = moment(Date.now()).format("DD-MM-YYYY");
     // if (today === recent) return true;
-    return false;
+    return true;
   }
 
-  function playedToday() {
-    getAllData().then((userData) => {
-      setData(userData);
-      console.log(data);
-      setScreenState("data");
-    });
+  function doneGame(dailyData) {
+    setScreenState('data')
+    setData([...data, dailyData])
+    console.log(data)
   }
 
   function ToShow() {
@@ -62,8 +60,7 @@ function App() {
               questions={questions}
               dailyData={dailyData}
               setScreenState={setScreenState}
-              playedToday={playedToday}
-              data = {data}
+              doneGame={doneGame}
             />
           </div>
         );

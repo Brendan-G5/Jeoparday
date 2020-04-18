@@ -4,7 +4,7 @@ import QuestionItem from "../QuestionItem/QuestionItem";
 import { sendToDb } from "../../DatabaseHandler";
 
 
-function GamePlay({ questions, dailyData, setScreenState, playedToday}) {
+function GamePlay({ questions, dailyData, setScreenState, doneGame}) {
   const [answer, setAnswer] = useState("");
   const [counter, setCounter] = useState(0);
   const [gameType, setGameType] = useState();
@@ -71,12 +71,8 @@ function GamePlay({ questions, dailyData, setScreenState, playedToday}) {
 
   async function viewData(dailyData) {
     setScreenState("load");
-    playedToday();
+    doneGame(dailyData);
   }
-
-  // async function delay(ms) {
-  //   return await new Promise((resolve) => setTimeout(resolve, ms));
-  // }
 
   function handleChange(event) {
     setAnswer(event.target.value);
