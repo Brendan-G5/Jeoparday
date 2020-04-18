@@ -5,9 +5,9 @@ function QuestionItem({ question }) {
   let anw = <div className="single-question"></div>;
 
   if (question.reveal === "good") {
-    anw = <div className="anwser yes">{question.answer}</div>;
+    anw = <div className="answer-box yes">{question.answer}</div>;
   } else if (question.reveal === "bad") {
-    anw = <div className="anwser no">{question.answer}</div>;
+    anw = <div className="answer-box no">{question.answer}</div>;
   }
 
   return <div>{anw}</div>;

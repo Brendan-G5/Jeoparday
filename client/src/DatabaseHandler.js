@@ -10,7 +10,7 @@ function getAllData () {
 
 function sendToDb (event) {
   // event.date = moment(event.date).format('DD-MM-YYYY, h:mm:ss a')
-  event.date = moment(event.date).format('DD-MM-YYYY')
+  event.date = moment(event.date).format('hh:mm:ss')
   console.log(event)
   return fetchRequest('/questions', {
     method: 'POST',

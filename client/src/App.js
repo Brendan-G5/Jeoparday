@@ -5,41 +5,45 @@ import GamePlay from "./components/GamePlay/GamePlay";
 import DataPage from "./components/DataPage/DataPage";
 import { getAllData } from "./DatabaseHandler";
 
-const JeoPhoto = require('./assets/Jeoparday.png')
-const moment = require('moment');
+const JeoPhoto = require("./assets/Jeoparday.png");
+const moment = require("moment");
 
 function App() {
   const [questions, setQuestions] = useState([]);
   const [dailyData, setDailyData] = useState({});
   const [screenState, setScreenState] = useState("load");
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
+  const [firstItem, setFirstItem] = useState({});  //A bad fix to a problem i could not solve...
 
   useEffect(() => {
-    getQuestions().then((newData) => {
-      setDailyData(newData[0]);
-      setQuestions(newData[1]);
-      getAllData().then((newData) => {
-        setData(newData);
-        if (checkPlayed(newData)) {
+    getAllData().then((userData) => {
+      if (userData.length) {
+        setFirstItem(userData[0])
+        setData(userData);
+        if (checkPlayed(userData)) {
           setScreenState("data");
-        } else {
-          setScreenState("play")
+          return;
         }
-    });
-    });
-
-  }, []);
+      }
+      getQuestions().then((quesData) => {
+            if (quesData) {
+              setDailyData(quesData[0]);
+              setQuestions(quesData[1]);
+              setScreenState("play");
+            }
+          });
+  })}, []);
 
   function checkPlayed(newData) {
-    let recent = (newData.pop()).date
-    let today = moment(Date.now()).format('DD-MM-YYYY')
-    if (today === recent) return true;
+    let recent = newData[newData.length-1].date;
+    let today = moment(Date.now()).format("DD-MM-YYYY");
+    // if (today === recent) return true;
     return false;
   }
 
   function playedToday() {
-    getAllData().then((data) => {
-      setData(data);
+    getAllData().then((userData) => {
+      setData(userData);
       setScreenState("data");
     });
   }
@@ -47,7 +51,11 @@ function App() {
   function ToShow() {
     switch (screenState) {
       case "load":
-        return <div>Loading</div>;
+        return (
+          <div className="center-me">
+            <div className="loader"></div>
+          </div>
+        );
       case "play":
         return (
           <div className="questions">
@@ -56,22 +64,19 @@ function App() {
               dailyData={dailyData}
               setScreenState={setScreenState}
               playedToday={playedToday}
+              data = {data}
             />
           </div>
         );
       case "data":
-        console.log(data)
         if (data.length) {
           return (
             <div>
-              <DataPage data={data} />
+              <DataPage data={data} firstItem = {firstItem}/>
             </div>
           );
-          }
-        else {
-          return (
-            <div>No data yet</div>
-          )
+        } else {
+          return <div>No data yet</div>;
         }
       default:
         return <div>This is bad</div>;
@@ -81,8 +86,8 @@ function App() {
   return (
     <div className="JEO">
       <div className="title">
-         <img className = "title" src = {JeoPhoto}/>
-         </div>
+        <img className="title" src={JeoPhoto} alt = "JEOPARDAY" />
+      </div>
       <ToShow />
     </div>
   );

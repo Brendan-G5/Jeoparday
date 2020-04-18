@@ -40,23 +40,6 @@ function PieChart({ data, colors }) {
     legend: {
       show: true,
     },
-    tooltip: {
-      format: {
-        title: function (d) {
-          "title";
-        },
-        value: function (value, ratio, id, d) {
-          console.log(d, "d");
-          console.log(value, "value");
-          console.log(ratio, "ratio");
-          console.log(id, "id");
-          return "value";
-        },
-        name: function (ratio) {
-          return ratio;
-        },
-      },
-    },
   };
 
   return (

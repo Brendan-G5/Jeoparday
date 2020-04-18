@@ -4,7 +4,7 @@ import QuestionItem from "../QuestionItem/QuestionItem";
 import { sendToDb } from "../../DatabaseHandler";
 
 
-function GamePlay({ questions, dailyData, setScreenState, playedToday }) {
+function GamePlay({ questions, dailyData, setScreenState, playedToday}) {
   const [answer, setAnswer] = useState("");
   const [counter, setCounter] = useState(0);
   const [gameType, setGameType] = useState();
@@ -19,7 +19,7 @@ function GamePlay({ questions, dailyData, setScreenState, playedToday }) {
             return (
               <div>
                 <div>{dailyData.result}/5</div>
-                <div onClick={() => viewData()}>View Data</div>
+                <div onClick={() => viewData(dailyData)}>View Data</div>
               </div>
             );
           case "done":
@@ -50,7 +50,7 @@ function GamePlay({ questions, dailyData, setScreenState, playedToday }) {
     if (counter < 4) {
       setGameType(counter + 1);
     } else {
-      // sendToDb(dailyData);  /TURN THIS BACK ON TO SEND DATA TO DB
+      sendToDb(dailyData);
       setGameType("results");
     }
     setCounter(counter + 1);
@@ -69,16 +69,14 @@ function GamePlay({ questions, dailyData, setScreenState, playedToday }) {
     }
   }
 
-  async function viewData() {
-    setGameType("done");
-    await delay(500);
+  async function viewData(dailyData) {
     setScreenState("load");
     playedToday();
   }
 
-  async function delay(ms) {
-    return await new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  // async function delay(ms) {
+  //   return await new Promise((resolve) => setTimeout(resolve, ms));
+  // }
 
   function handleChange(event) {
     setAnswer(event.target.value);

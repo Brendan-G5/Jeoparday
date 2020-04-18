@@ -16,7 +16,7 @@ function LineChart({ data, colors }) {
   const lineChartData = {
     data: {
       x: "Dates",
-      xFormat: "%d-%m-%Y",
+      xFormat: "%H:%M:%S",
       columns: [
         ["Dates", ...dataArrays.date],
         ["Category", ...dataArrays.result],
@@ -36,36 +36,47 @@ function LineChart({ data, colors }) {
             return colors[4];
           case 5:
             return colors[5];
+          default:
+            return "#000000";
         }
-    }
+      },
     },
     axis: {
       x: {
         type: "timeseries",
         tick: {
-          format: "%d-%m-%Y",
-          culling: true
+          format: "%H:%M:%S",
+          culling: true,
         },
       },
       y: {
         tick: {
-          values: [0,1,2,3,4,5]
-        }
-      }
+          values: [0, 1, 2, 3, 4, 5],
+        },
+        min: 0,
+        max: 5
+      },
     },
     legend: {
       show: false,
     },
     tooltip: {
       format: {
-        value: function (index) {
+        value: function (value, ratio, id, index) {
           return dataArrays.title[index];
-      }
-      }
-    }
+        },
+      },
+    },
   };
 
-  return <C3Chart data={lineChartData.data} axis={lineChartData.axis} legend={lineChartData.legend} tooltip = {lineChartData.tooltip}/>;
+  return (
+    <C3Chart
+      data={lineChartData.data}
+      axis={lineChartData.axis}
+      legend={lineChartData.legend}
+      tooltip={lineChartData.tooltip}
+    />
+  );
 }
 
 export default LineChart;
