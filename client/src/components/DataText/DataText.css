@@ -1,0 +1,60 @@
+.data-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: rgb(36, 91, 143);
+  width: 30vw;
+  margin-left: 10vw;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.import-num {
+  font-family: 'Bebas Neue', cursive;
+  color: #E29930;
+  font-size: 30px;
+}
+
+
+.text-best{
+  flex:1
+}
+
+.text-current{
+  flex:1
+}
+
+.text-perfect{
+  flex:1
+}
+
+.text-view {
+  flex:4;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #E29930;
+  border-radius: 5px;
+}
+
+.view-text {
+  align-self: center;
+  font-size: 3rem;
+}
+
+.view-1{
+  align-self: center;
+}
+
+.view-2 {
+  align-self: center;
+}
+
+.view-3 {
+  align-self: center;
+}
+
+.view-button {
+  width: 10vw;
+  margin: 5px;
+}

@@ -6,9 +6,7 @@ import "c3/c3.css";
 function LineChart({ data, colors }) {
 
   let dataDates = []
-
   let dataResults = []
-
   let dataTitles = []
 
   data.forEach((key) => {
@@ -16,6 +14,7 @@ function LineChart({ data, colors }) {
     dataResults.push(key.result)
     dataTitles.push(key.title)
   });
+
 
 
   const lineChartData = {
@@ -68,6 +67,7 @@ function LineChart({ data, colors }) {
     tooltip: {
       format: {
         value: function (value, ratio, id, index) {
+          console.log(typeof dataTitles[index])
           return dataTitles[index];
         },
       },

@@ -1,9 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
 import "./DataPage.css";
 import LineChart from "../LineChart/LineChart";
 import PieChart from "../PieChart/PieChart";
+import DataText from "../DataText/DataText"
 
 function DataPage({ data }) {
+
+  const [selector, setSelector] = useState('all')
+
+  function changeSelector(newSel) {
+    setSelector(newSel)
+  }
+
+
+  let datatoShow =  (selector) =>  {
+    switch (typeof selector) {
+      case 'number':
+        return data.slice(-selector);
+      default:
+        return data
+    }
+  }
 
   const colors = [
     "#89d2f1", //color for 0
@@ -18,7 +35,7 @@ function DataPage({ data }) {
   let LineGraph = () => {
     if (data.length > 1) {
       return (
-        <LineChart data={data} colors={colors} />
+        <LineChart data={datatoShow(selector)} colors={colors} />
       )
     } else {
       return (
@@ -31,15 +48,10 @@ function DataPage({ data }) {
   return (
     <div className="data-page">
       <div className="data-top">
-        <div className="data-text">
-          <div>
-          Here maybe goes the changer
-          </div>
-        </div>
+        <DataText data = {data} changeSelector = {changeSelector}/>
         <div className="data-pie">
-            <div className="data-scatter">
-              <PieChart data={data} colors={colors} />
-            </div>
+            <div></div>
+            <PieChart data={datatoShow(selector)} colors={colors} />
         </div>
       </div>
         <div className="data-scatter">

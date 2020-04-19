@@ -1,18 +1,24 @@
 .data-page {
   display: flex;
   flex-direction: column;
+  color:white;
 }
 
-.data-text {
-  flex-direction: row;
+
+
+.data-text, .data-pie {
+  margin-top: 20px;
+}
+
+.data-top {
+  display: flex;
   justify-content: space-evenly;
-  width: 100vw;
-  align-items: center;
 }
 
 .data-pie{
   justify-content: right;
   margin-left: 15vw;
+  width: 40vw;
 }
 
 .data-scatter {

@@ -51,7 +51,7 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
     if (counter < 4) {
       setGameType(counter + 1);
     } else {
-      sendToDb(dailyData);
+      // sendToDb(dailyData);  //uncomment to sent to db
       setGameType("results");
     }
     setCounter(counter + 1);

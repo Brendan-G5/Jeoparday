@@ -6,3 +6,6 @@ path.domain { stroke: white; }
 .c3 .c3-axis-y path, .c3 .c3-axis-y line {
   stroke: white;
 }
+.c3-tooltip td {
+  color: #222;
+}

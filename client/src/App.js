@@ -37,7 +37,7 @@ function App() {
     let recent = newData[newData.length-1].date;
     let today = moment(Date.now()).format("DD-MM-YYYY");
     // if (today === recent) return true;
-    return false;
+    return true;
   }
 
   function doneGame(dailyData) {
