@@ -16,6 +16,7 @@ function App() {
 
   useEffect(() => {
     getAllData().then((userData) => {
+      console.log('here is the user data', userData)
       if (userData.length) {
         setData(userData);
         if (checkPlayed(userData)) {

@@ -13,14 +13,14 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
   function GameBoard(gameType) {
     switch (typeof gameType) {
       case "number":
-        return <div>{questions[gameType].question}</div>;
+        return <div className="asked-question">{questions[gameType].question}</div>;
       case "string":
         switch (gameType) {
           case "results":
             return (
-              <div>
-                <div>{dailyData.result}/5</div>
-                <div onClick={() => viewData(dailyData)}>View Data</div>
+              <div className = 'results-page'>
+                <div className="result">{dailyData.result}/5</div>
+                <div className="view-data" onClick={() => viewData(dailyData)}>View Data</div>
               </div>
             );
           case "done":

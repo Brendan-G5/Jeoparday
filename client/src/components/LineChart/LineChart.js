@@ -4,22 +4,27 @@ import C3Chart from "react-c3js";
 import "c3/c3.css";
 
 function LineChart({ data, colors }) {
-  let dataArrays = data.reduce(function (obj, current) {
-    Object.keys(current).forEach(function (key) {
-      obj[key] = obj[key] || [];
-      obj[key] = Array.isArray(obj[key]) ? obj[key] : [obj[key]];
-      obj[key].push(current[key]);
-    });
-    return obj;
+
+  let dataDates = []
+
+  let dataResults = []
+
+  let dataTitles = []
+
+  data.forEach((key) => {
+    dataDates.push(key.date)
+    dataResults.push(key.result)
+    dataTitles.push(key.title)
   });
+
 
   const lineChartData = {
     data: {
       x: "Dates",
       xFormat: "%H:%M:%S",
       columns: [
-        ["Dates", ...dataArrays.date],
-        ["Category", ...dataArrays.result],
+        ["Dates", ...dataDates],
+        ["Category", ...dataResults],
       ],
       type: "scatter",
       color: function (color, d) {
@@ -63,10 +68,13 @@ function LineChart({ data, colors }) {
     tooltip: {
       format: {
         value: function (value, ratio, id, index) {
-          return dataArrays.title[index];
+          return dataTitles[index];
         },
       },
     },
+    point: {
+      r: 4
+    }
   };
 
   return (
@@ -75,6 +83,7 @@ function LineChart({ data, colors }) {
       axis={lineChartData.axis}
       legend={lineChartData.legend}
       tooltip={lineChartData.tooltip}
+      point= {lineChartData.point}
     />
   );
 }

@@ -1,0 +1,8 @@
+path.domain { stroke: white; }
+.tick text { stroke: white; }
+.c3 .c3-axis-x path, .c3 .c3-axis-x line {
+  stroke: white;
+}
+.c3 .c3-axis-y path, .c3 .c3-axis-y line {
+  stroke: white;
+}

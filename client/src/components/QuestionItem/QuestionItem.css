@@ -1,33 +1,38 @@
-.single-question {
-  display: flex;
-  flex: 1;
+.question-mark {
   margin:10px;
   background-color: #217ca3;
   height: 100px;
   width: 15vw;
   min-width: 100px;
   max-width: 250px;
-  text-align: center;
-  overflow-wrap: break-word;
   color:white;
   font-size: 50px;
-  justify-content: space-evenly;
 }
 
-.answer-spot {
+.answer-spot, .answer-spot-bad, .answer-spot-good {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
   border: 1px solid white;
   margin: 5px;
+  min-height: 100px;
+  text-align: center;
+  overflow-wrap: break-word;
 }
 
 .answer-spot:hover {
   background-color: rgb(228, 198, 156);
 }
 
+.answer-spot-good:hover {
+  background-color: rgb(206, 240, 161);
+}
+
+.answer-spot-bad:hover {
+  background-color: rgb(235, 156, 142);
+}
+
 .answer-box {
   color:white;
+  align-self: baseline;
 }
 
 .yes {
@@ -37,12 +42,10 @@
 .no, .yes {
   flex: 1;
   margin:10px;
-  height: 100px;
+  min-height: 100px;
   width: 15vw;
   min-width: 100px;
   max-width: 250px;
-  text-align: center;
-  overflow-wrap: break-word;
   font-size: 25px;
 }
 
