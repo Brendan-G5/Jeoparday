@@ -15,6 +15,39 @@
   font-size: 30px;
 }
 
+.data-view-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.data-view-top-left {
+  flex: 3;
+}
+
+.data-view-top-right {
+  flex: 5;
+  border: 3px solid #E29930;
+  margin: 3px;
+}
+
+.cur-num {
+  align-self: center;
+  font-size: 2rem;
+  color: #E29930
+}
+
+.cur-name {
+  align-self: center;
+  font-size: 1.5rem;
+}
+
+.current-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin:20px;
+}
+
 
 .text-best{
   flex:1
@@ -35,7 +68,9 @@
   justify-content: space-around;
   background-color: #E29930;
   border-radius: 5px;
+  margin-top: 5px;
 }
+
 
 .view-text {
   align-self: center;

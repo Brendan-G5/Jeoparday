@@ -17,7 +17,7 @@ function DataText({ data, changeSelector }) {
       if (data.result === 5) {
         perfectGames++;
       }
-      gamesPlayed++
+      gamesPlayed++;
       dateList.push(data.date);
     });
     dateList.reverse();
@@ -67,15 +67,28 @@ function DataText({ data, changeSelector }) {
 
   return (
     <div className="data-text">
-      <div className="text-current">
-        Games Played: <span className="import-num">{gamesPlayed}</span>
-      </div>
-      <div className="text-best">
-        Longest Streak: <span className="import-num">{bestStreak}</span>
-      </div>
-      <div className="text-perfect">
-        Number of Perfect Games:{" "}
-        <span className="import-num">{perfectGames}</span>{" "}
+      <div className = "data-view-top">
+        <div className = "data-view-top-left">
+        <div className="text-current">
+          Games Played: <span className="import-num">{gamesPlayed}</span>
+        </div>
+        <div className="text-best">
+          Longest Streak: <span className="import-num">{bestStreak}</span>
+        </div>
+        <div className="text-perfect">
+          Perfect Games: <span className="import-num">{perfectGames}</span>{" "}
+        </div>
+        </div>
+        <div className = "data-view-top-right">
+          <div className = "current-holder">
+            <div className = "cur-name">
+            Current Streak
+            </div>
+            <div className = "cur-num">
+            {currentStreak}
+            </div>
+          </div>
+        </div>
       </div>
       <div className="text-view">
         <div className="view-text">View Data</div>

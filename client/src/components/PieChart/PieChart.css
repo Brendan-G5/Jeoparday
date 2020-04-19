@@ -5,3 +5,7 @@
 .c3-legend-item {
   fill: white;
 }
+
+.c3-circle {
+  opacity: 1 !important;
+  }

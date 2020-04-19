@@ -31,6 +31,13 @@
   align-self: center;
 }
 
+.pie-title {
+  text-align: center;
+  font-family: 'Bebas Neue', cursive;
+  color: #E29930;
+  font-size: 20px;
+}
+
 
 .view-button {
   color: #494949 !important;

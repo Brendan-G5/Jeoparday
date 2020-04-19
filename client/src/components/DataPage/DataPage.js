@@ -23,12 +23,12 @@ function DataPage({ data }) {
   }
 
   const colors = [
-    "#89d2f1", //color for 0
-    "#5caed1", //color 1
+    "#0e5f82", //color for 0
+    "#217ca3", //color 1
     "#3e94b8", //color 2
-    "#217ca3", //color 3
-    "#0e5f82", //color 4
-    "#104e69", //color 5
+    "#5caed1", //color 3
+    "#89d2f1", //color 4
+    "#E29930", //color 5
   ];
 
 
@@ -51,7 +51,7 @@ function DataPage({ data }) {
       <div className="data-top">
         <DataText data = {data} changeSelector = {changeSelector}/>
         <div className="data-pie">
-            <div></div>
+            <div className = "pie-title">Daily Scores</div>
             <PieChart data={datatoShow(selector)} colors={colors} />
         </div>
       </div>

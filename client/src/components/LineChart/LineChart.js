@@ -51,6 +51,7 @@ function LineChart({ data, colors }) {
         type: "timeseries",
         tick: {
           format: "%d-%m-%Y",
+          rotate: 75,
           culling: true,
           fit: true,
           outer: false
@@ -77,8 +78,18 @@ function LineChart({ data, colors }) {
       },
     },
     point: {
-      r: 4
+      r: 4.5
+    },
+    grid : {
+      y: {
+        lines: [
+          {value: 1},
+          {value: 3},
+          {value: 5},
+        ]
+      }
     }
+
   };
 
   return (
@@ -88,6 +99,7 @@ function LineChart({ data, colors }) {
       legend={lineChartData.legend}
       tooltip={lineChartData.tooltip}
       point= {lineChartData.point}
+      grid= {lineChartData.grid}
     />
   );
 }
