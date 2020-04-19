@@ -52,11 +52,14 @@ function LineChart({ data, colors }) {
         tick: {
           format: "%d-%m-%Y",
           culling: true,
+          fit: true,
+          outer: false
         },
       },
       y: {
         tick: {
           values: [0, 1, 2, 3, 4, 5],
+          outer: false
         },
         min: 0,
         max: 5

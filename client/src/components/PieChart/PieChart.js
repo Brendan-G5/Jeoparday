@@ -37,7 +37,7 @@ function PieChart({ data, colors }) {
     },
     legend: {
       show: true,
-    },
+    }
   };
 
   return (

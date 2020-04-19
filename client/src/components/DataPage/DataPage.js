@@ -47,6 +47,7 @@ function DataPage({ data }) {
 
   return (
     <div className="data-page">
+      <div className="come-back">Come back tomorrow to play again!</div>
       <div className="data-top">
         <DataText data = {data} changeSelector = {changeSelector}/>
         <div className="data-pie">
