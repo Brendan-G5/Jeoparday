@@ -1,19 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import "./LineChart.css";
 import C3Chart from "react-c3js";
 import "c3/c3.css";
 
 function LineChart({ data, colors }) {
 
-  let dataDates = []
-  let dataResults = []
-  let dataTitles = []
+
+
+
+  let dataDates = [];
+  let dataResults = [];
+  let dataTitles = [];
 
   data.forEach((key) => {
     dataDates.push(key.date)
     dataResults.push(key.result)
     dataTitles.push(key.title)
   });
+
+
 
 
 
@@ -71,11 +76,10 @@ function LineChart({ data, colors }) {
     },
     tooltip: {
       format: {
-        value: function (value, ratio, id, index) {
-          console.log(typeof dataTitles[index])
-          return dataTitles[index];
-        },
-      },
+        value: (value, ratio, id, index) => {
+          return dataTitles[index]
+        }
+      }
     },
     point: {
       r: 4.5
