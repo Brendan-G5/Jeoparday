@@ -20,7 +20,8 @@ function LineChart({ data, colors }) {
   const lineChartData = {
     data: {
       x: "Dates",
-      xFormat: "%H:%M:%S",
+      //%H:%M:%S
+      xFormat: "%d-%m-%Y",
       columns: [
         ["Dates", ...dataDates],
         ["Category", ...dataResults],
@@ -49,7 +50,7 @@ function LineChart({ data, colors }) {
       x: {
         type: "timeseries",
         tick: {
-          format: "%H:%M:%S",
+          format: "%d-%m-%Y",
           culling: true,
         },
       },
