@@ -59,16 +59,26 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
   }
 
   function checkAnswer(answer, counter) {
-    if (
-      answer.toLowerCase() === "true" ||
-      answer.toLowerCase() === questions[counter].answer.toLowerCase()
-    ) {
+    if (checkAllAnswers(answer, questions[counter].answer)) {
       dailyData.result++;
       return true;
     } else {
       return false;
     }
   }
+
+  function checkAllAnswers (userAns, compAns) {
+    userAns = userAns.toLowerCase().replace(/\s/g, '');
+    compAns = " " + compAns + " ";
+    compAns = compAns.toLowerCase()
+    compAns.replace(" a ", "");
+    compAns.replace(" an ", "");
+    compAns.replace(" the ", "");
+    compAns = compAns.replace(/[^\w]|_/g, '');
+    if (compAns === userAns) return true;
+    return false;
+  }
+
 
   async function viewData(dailyData) {
     setScreenState("load");
