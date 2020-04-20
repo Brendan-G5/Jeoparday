@@ -55,7 +55,7 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
     if (counter < 4) {
       setGameType(counter + 1);
     } else {
-      // sendToDb(dailyData);  //uncomment to sent to db
+      sendToDb(dailyData);
       setGameType("results");
     }
     setCounter(counter + 1);
@@ -72,6 +72,9 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
   }
 
   function checkAllAnswers(userAns, compAns) {
+    userAns.replace(" a ", "");
+    userAns.replace(" an ", "");
+    userAns.replace(" the ", "");
     userAns = userAns.toLowerCase().replace(/\s/g, "");
     compAns = " " + compAns + " ";
     compAns = compAns.toLowerCase();
