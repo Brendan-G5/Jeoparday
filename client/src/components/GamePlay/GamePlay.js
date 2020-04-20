@@ -13,14 +13,18 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
   function GameBoard(gameType) {
     switch (typeof gameType) {
       case "number":
-        return <div className="asked-question">{questions[gameType].question}</div>;
+        return (
+          <div className="asked-question">{questions[gameType].question}</div>
+        );
       case "string":
         switch (gameType) {
           case "results":
             return (
-              <div className = 'results-page'>
+              <div className="results-page">
                 <div className="result">{dailyData.result}/5</div>
-                <div className="view-data" onClick={() => viewData(dailyData)}>View Data</div>
+                <div className="view-data" onClick={() => viewData(dailyData)}>
+                  View Data
+                </div>
               </div>
             );
           case "done":
@@ -67,18 +71,17 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
     }
   }
 
-  function checkAllAnswers (userAns, compAns) {
-    userAns = userAns.toLowerCase().replace(/\s/g, '');
+  function checkAllAnswers(userAns, compAns) {
+    userAns = userAns.toLowerCase().replace(/\s/g, "");
     compAns = " " + compAns + " ";
-    compAns = compAns.toLowerCase()
+    compAns = compAns.toLowerCase();
     compAns.replace(" a ", "");
     compAns.replace(" an ", "");
     compAns.replace(" the ", "");
-    compAns = compAns.replace(/[^\w]|_/g, '');
+    compAns = compAns.replace(/[^\w]|_/g, "");
     if (compAns === userAns) return true;
     return false;
   }
-
 
   async function viewData(dailyData) {
     setScreenState("load");
@@ -89,11 +92,10 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
     setAnswer(event.target.value);
   }
 
-
   return (
     <div className="playarea">
       <div className="category">
-        Today's Category is: <b className = "category-name">{dailyData.title}</b>
+        Today's Category is: <b className="category-name">{dailyData.title}</b>
       </div>
       <div className="question-list">
         {questions.map((question) => (
@@ -102,9 +104,9 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
       </div>
       <div className="mid-level">
         <div className="cartoon">
-          <img src={JeoHost} ALY />
+          <img src={JeoHost} />
         </div>
-        <div className = "holder">
+        <div className="holder">
           <div className="question-spot">{GameBoard(gameType)}</div>
           <form onSubmit={submitResponse}>
             <input
@@ -116,7 +118,7 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
           </form>
         </div>
         <div className="cartoon">
-          <img src={JeoCont} ALY />
+          <img src={JeoCont} />
         </div>
       </div>
     </div>

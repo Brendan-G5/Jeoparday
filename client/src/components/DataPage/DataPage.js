@@ -18,7 +18,7 @@ function DataPage({ data }) {
       case 'number':
         return data.slice(-selector);
       default:
-        return data
+        return data;
     }
   }
 
