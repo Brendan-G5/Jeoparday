@@ -16,7 +16,6 @@ function App() {
 
   useEffect(() => {
     getAllData().then((userData) => {
-      console.log('here is the user data', userData)
       if (userData.length) {
         setData(userData);
         if (checkPlayed(userData)) {
@@ -29,6 +28,8 @@ function App() {
               setDailyData(quesData[0]);
               setQuestions(quesData[1]);
               setScreenState("play");
+            } else {
+              setScreenState("error")
             }
           });
   })}, []);
@@ -36,14 +37,13 @@ function App() {
   function checkPlayed(newData) {
     let recent = newData[newData.length-1].date;
     let today = moment(Date.now()).format("DD-MM-YYYY");
-    // if (today === recent) return true;
-    return true;
+    if (today === recent) return true;
+    return false;
   }
 
   function doneGame(dailyData) {
     setScreenState('data')
     setData([...data, dailyData])
-    console.log(data)
   }
 
   function ToShow() {
@@ -76,14 +76,14 @@ function App() {
           return <div>No data yet</div>;
         }
       default:
-        return <div>This is bad</div>;
+        return <div className = "wrong">Something went Wrong :( <br /> Try Reloading...</div>;
     }
   }
 
   return (
     <div className="JEO">
       <div className="title">
-        <img className="title" src={JeoPhoto}/>
+        <img className="title" src={JeoPhoto} alt = "JEOPARDAY"/>
       </div>
       <ToShow />
     </div>

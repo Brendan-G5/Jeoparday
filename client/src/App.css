@@ -10,6 +10,7 @@
 html {
   background-color: black;
 }
+
 body {
   font-family: 'Oswald', sans-serif;
 }
@@ -21,6 +22,12 @@ body {
   max-height:25vh;
   width: auto;
   height: auto;
+}
+
+.wrong {
+  color:white;
+  align-self: center;
+  font-size: 30px;
 }
 
 .questions {

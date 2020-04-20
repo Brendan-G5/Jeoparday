@@ -12,11 +12,6 @@
   justify-content: center;
 }
 
-.playarea {
-  display: flex;
-  flex-direction: column;
-}
-
 .question-spot {
   display: flex;
   justify-content: center;

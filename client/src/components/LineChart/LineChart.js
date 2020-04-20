@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./LineChart.css";
-import C3Chart from "react-c3js";
 import "c3/c3.css";
 const c3 = require("c3");
-const moment = require("moment")
 
 function LineChart({ data, colors }) {
-  const newdata = data;
 
   let dataDates = [];
   let dataResults = [];
@@ -27,7 +24,6 @@ function LineChart({ data, colors }) {
       bindto: ".chart",
       data: {
         x: "Dates",
-        //%H:%M:%S
         xFormat: "%d-%m-%Y",
         columns: [
           ["Dates", ...dataDates],
@@ -74,7 +70,7 @@ function LineChart({ data, colors }) {
         },
       },
       legend: {
-        show: true,
+        show: false,
       },
       tooltip: {
         format: {
@@ -117,34 +113,35 @@ function LineChart({ data, colors }) {
       const date = Date.parse(val.x) - startingDate
       x_vals.push(date);
       y_vals.push(val.value)
+      return true;
     })
-    const x_sum = x_vals.reduce((a,b) => a+b, 0)
-    const y_sum = y_vals.reduce((a,b) => a+b, 0)
-    const x_mean = x_sum/x_vals.length;
-    const y_mean = y_sum/y_vals.length;
+    const x_mean = meanFinder(x_vals)
+    const y_mean = meanFinder(y_vals)
     const xy_vals = [];
     const xx_vals = [];
     for (let i=0; i< x_vals.length; i++) {
       xy_vals.push(x_vals[i]*y_vals[i]);
       xx_vals.push(Math.pow(x_vals[i],2));
     }
-    const xy_sum = xy_vals.reduce((a,b) => a+b, 0)
-    const xx_sum = xx_vals.reduce((a,b) => a+b, 0)
-    const xy_mean = xy_sum/xy_vals.length;
-    const xx_mean = xx_sum/xx_vals.length;
+    const xy_mean = meanFinder(xy_vals);
+    const xx_mean = meanFinder(xx_vals);
     const m = (((x_mean*y_mean) - xy_mean) / ((x_mean*y_mean) - xx_mean));
     const b = y_mean - m*x_mean;
     const bestFitData = [];
     for (let i =0; i<x_vals.length; i++) {
       bestFitData.push(b + m*x_vals[i])
     }
-    console.log(bestFitData)
     return bestFitData;
+  }
+
+  function meanFinder(vals) {
+    let sum = vals.reduce((a,b) => a+b, 0)
+    return sum/vals.length
   }
 
   return (
     <div>
-      <div className="chart">?</div>
+      <div className="chart"></div>
     </div>
   );
 }

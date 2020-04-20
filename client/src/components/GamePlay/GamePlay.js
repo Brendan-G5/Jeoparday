@@ -72,18 +72,23 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
   }
 
   function checkAllAnswers(userAns, compAns) {
-    userAns.replace(" a ", "");
-    userAns.replace(" an ", "");
-    userAns.replace(" the ", "");
-    userAns = userAns.toLowerCase().replace(/\s/g, "");
-    compAns = " " + compAns + " ";
-    compAns = compAns.toLowerCase();
-    compAns.replace(" a ", "");
-    compAns.replace(" an ", "");
-    compAns.replace(" the ", "");
+    userAns = prettyWord(userAns);
+    compAns = prettyWord(compAns)
+    userAns = userAns.replace(/\s/g, "");
     compAns = compAns.replace(/[^\w]|_/g, "");
     if (compAns === userAns) return true;
     return false;
+  }
+
+  let wordstoRemove = ['a', 'the', 'an'];
+
+  function prettyWord(word) {
+    word = word.toLowerCase()
+    word = " " + word + " ";
+    for (let i=0; i<wordstoRemove.length; i++) {
+      word.replace(" "+wordstoRemove[i]+" ", "");
+    }
+    return word;
   }
 
   async function viewData(dailyData) {
@@ -107,7 +112,7 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
       </div>
       <div className="mid-level">
         <div className="cartoon">
-          <img src={JeoHost} />
+          <img src={JeoHost} alt ="JEOHOST" />
         </div>
         <div className="holder">
           <div className="question-spot">{GameBoard(gameType)}</div>
@@ -121,7 +126,7 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
           </form>
         </div>
         <div className="cartoon">
-          <img src={JeoCont} />
+          <img src={JeoCont} alt ="JEOCONT" />
         </div>
       </div>
     </div>

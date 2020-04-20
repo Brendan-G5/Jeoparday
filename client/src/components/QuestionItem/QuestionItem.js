@@ -8,6 +8,7 @@ function QuestionItem({ question }) {
     answer = answer.replace(re, '')
     re = new RegExp(`</.>`)
     answer = answer.replace(re, '')
+    answer = answer.replace('\\', '')
     return answer
   }
 

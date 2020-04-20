@@ -39,7 +39,7 @@ function DataPage({ data }) {
       )
     } else {
       return (
-      <div className = "come-back">Come back tomorrow to see Data</div>
+      <div className = "come-back">Come back tomorrow to see your data graphed!</div>
       )
     }
   }
