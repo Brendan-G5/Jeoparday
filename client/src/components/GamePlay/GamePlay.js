@@ -22,7 +22,10 @@ function GamePlay({ questions, dailyData, setScreenState, data }) {
             return (
               <div className="results-page">
                 <div className="result">{dailyData.result}/5</div>
-                <div className="view-data" onClick={() => viewData()}>
+                <div
+                  className="view-data"
+                  onClick={() => setScreenState("data")}
+                >
                   View Data
                 </div>
               </div>
@@ -80,7 +83,7 @@ function GamePlay({ questions, dailyData, setScreenState, data }) {
     userAns = userAns.replace(/\s/g, "");
     userAns = userAns.replace(/[^\w]|_/g, "");
     compAns = compAns.replace(/[^\w]|_/g, "");
-    console.log(compAns, userAns)
+    console.log(compAns, userAns);
     if (compAns === userAns) return true;
     return false;
   }
@@ -91,13 +94,9 @@ function GamePlay({ questions, dailyData, setScreenState, data }) {
     word = word.toLowerCase();
     word = " " + word + " ";
     for (let i = 0; i < wordstoRemove.length; i++) {
-      word = word.replace(" "+wordstoRemove[i]+" ", "");
+      word = word.replace(" " + wordstoRemove[i] + " ", "");
     }
     return word;
-  }
-
-  async function viewData() {
-    setScreenState("data");
   }
 
   function handleChange(event) {
