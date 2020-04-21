@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./GamePlay.css";
 import QuestionItem from "../QuestionItem/QuestionItem";
-import { sendToDb } from "../../DatabaseHandler";
+import moment from "moment";
 const JeoHost = require("../../assets/JeoHost.png");
 const JeoCont = require("../../assets/JeoCont.png");
 
-function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
+function GamePlay({ questions, dailyData, setScreenState, doneGame, data }) {
   const [answer, setAnswer] = useState("");
   const [counter, setCounter] = useState(0);
   const [gameType, setGameType] = useState();
@@ -55,7 +55,10 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame }) {
     if (counter < 4) {
       setGameType(counter + 1);
     } else {
-      sendToDb(dailyData);
+      let temp = data;
+      temp.push(dailyData)
+      temp.date = moment(temp.date).format("DD-MM-YYYY")
+      localStorage.setItem("userJeoData", JSON.stringify(temp))
       setGameType("results");
     }
     setCounter(counter + 1);

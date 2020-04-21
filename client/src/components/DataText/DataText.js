@@ -27,7 +27,7 @@ function DataText({ data, changeSelector }) {
 
   function checkCurrentStreak(dateList) {
     let current = moment().format("DD-MM-YYYY");
-    if (dateList[0] === current) {
+    if (moment(dateList[0]).format("DD-MM-YYYY") === current) {
       currentStreak++;
       for (let i = 1; i < dateList.length; i++) {
         if (

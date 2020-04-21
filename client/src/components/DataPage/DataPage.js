@@ -6,12 +6,12 @@ import DataText from "../DataText/DataText"
 
 function DataPage({ data }) {
 
+
   const [selector, setSelector] = useState('all')
 
   function changeSelector(newSel) {
     setSelector(newSel)
   }
-
 
   let datatoShow =  (selector) =>  {
     switch (typeof selector) {

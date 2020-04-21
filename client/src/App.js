@@ -3,10 +3,12 @@ import "./App.css";
 import getQuestions from "./APIHandler";
 import GamePlay from "./components/GamePlay/GamePlay";
 import DataPage from "./components/DataPage/DataPage";
-import { getAllData } from "./DatabaseHandler";
+
+// const mockdata = require ('./mock.json')
 
 const JeoPhoto = require("./assets/Jeoparday.png");
 const moment = require("moment");
+
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -15,27 +17,26 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    getAllData().then((userData) => {
-      if (userData.length) {
-        setData(userData);
-        if (checkPlayed(userData)) {
-          setScreenState("data");
-          return;
-        }
-      }
-      getQuestions().then((quesData) => {
-            if (quesData) {
-              setDailyData(quesData[0]);
-              setQuestions(quesData[1]);
-              setScreenState("play");
-            } else {
-              setScreenState("error")
-            }
-          });
-  })}, []);
+    let userData = JSON.parse(localStorage.getItem("userJeoData") || "[]");
+    console.log(userData)
+    setData(userData);
+    if (userData.length && checkPlayed(userData)) {
+        setScreenState("data");
+        return;
+    }
+    getQuestions().then((quesData) => {
+          if (quesData) {
+            setDailyData(quesData[0]);
+            setQuestions(quesData[1]);
+            setScreenState("play");
+          } else {
+            setScreenState("error")
+          }
+        });
+  }, []);
 
   function checkPlayed(newData) {
-    let recent = newData[newData.length-1].date;
+    let recent = moment(newData[newData.length-1].date).format("DD-MM-YYYY");
     let today = moment(Date.now()).format("DD-MM-YYYY");
     if (today === recent) return true;
     return false;
@@ -43,7 +44,7 @@ function App() {
 
   function doneGame(dailyData) {
     setScreenState('data')
-    setData([...data, dailyData])
+    // setData([...data, dailyData])
   }
 
   function ToShow() {
@@ -62,6 +63,8 @@ function App() {
               dailyData={dailyData}
               setScreenState={setScreenState}
               doneGame={doneGame}
+              data = {data}
+              setData= {setData}
             />
           </div>
         );
@@ -76,7 +79,7 @@ function App() {
           return <div>No data yet</div>;
         }
       default:
-        return <div className = "wrong">Something went Wrong :( <br /> Try Reloading...</div>;
+        return <div className = "wrong">Something went Wrong :( <br /> No Internet? Try Reloading...?</div>;
     }
   }
 
