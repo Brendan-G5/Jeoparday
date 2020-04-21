@@ -83,7 +83,6 @@ function GamePlay({ questions, dailyData, setScreenState, data }) {
     userAns = userAns.replace(/\s/g, "");
     userAns = userAns.replace(/[^\w]|_/g, "");
     compAns = compAns.replace(/[^\w]|_/g, "");
-    console.log(compAns, userAns);
     if (compAns === userAns) return true;
     return false;
   }

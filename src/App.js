@@ -55,7 +55,6 @@ function App() {
               dailyData={dailyData}
               setScreenState={setScreenState}
               data={data}
-              setData={setData}
             />
           </div>
         );
