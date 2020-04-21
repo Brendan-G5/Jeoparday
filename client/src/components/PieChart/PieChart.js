@@ -29,11 +29,11 @@ function PieChart({ data, colors }) {
         4: colors[4],
         5: colors[5],
       },
-      order: null
+      order: null,
     },
     legend: {
       show: true,
-    }
+    },
   };
 
   return (

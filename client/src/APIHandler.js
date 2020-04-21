@@ -11,19 +11,17 @@ async function getQuestions() {
   questionList.forEach(function (Q) {
     if (Q.invalid_count === null && !takenAnswer.includes(Q.answer)) {
       questionsToGo.push(Q);
-      takenAnswer.push(Q.answer)
+      takenAnswer.push(Q.answer);
     }
   });
 
-
   if (questionsToGo.length >= 5) {
     shuffleArray(questionsToGo);
-    const finalQs = questionsToGo.slice(0, 5)
-       .map((el) => {
-         let val = Object.assign({}, el);
-         val.reveal = null;
-         return val;
-       });
+    const finalQs = questionsToGo.slice(0, 5).map((el) => {
+      let val = Object.assign({}, el);
+      val.reveal = null;
+      return val;
+    });
     const dailyObj = {
       title: questions.title,
       date: Date.now(),
@@ -39,8 +37,8 @@ function fetchRequest(path, options) {
   return fetch(BASE_URL + path, options)
     .then((res) => (res.status <= 400 ? res.json() : Promise.reject(res)))
     .catch((err) => {
-      console.log(err);
-      console.log("error during fetch request");
+      console.log(err); // eslint-disable-line no-console
+      console.log("error during fetch request"); // eslint-disable-line no-console
     });
 }
 

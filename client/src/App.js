@@ -4,8 +4,6 @@ import getQuestions from "./APIHandler";
 import GamePlay from "./components/GamePlay/GamePlay";
 import DataPage from "./components/DataPage/DataPage";
 
-// const mockdata = require ('./mock.json')
-
 const JeoPhoto = require("./assets/Jeoparday.png");
 const moment = require("moment");
 
@@ -18,33 +16,27 @@ function App() {
 
   useEffect(() => {
     let userData = JSON.parse(localStorage.getItem("userJeoData") || "[]");
-    console.log(userData)
     setData(userData);
     if (userData.length && checkPlayed(userData)) {
-        setScreenState("data");
-        return;
+      setScreenState("data");
+      return;
     }
     getQuestions().then((quesData) => {
-          if (quesData) {
-            setDailyData(quesData[0]);
-            setQuestions(quesData[1]);
-            setScreenState("play");
-          } else {
-            setScreenState("error")
-          }
-        });
+      if (quesData) {
+        setDailyData(quesData[0]);
+        setQuestions(quesData[1]);
+        setScreenState("play");
+      } else {
+        setScreenState("error");
+      }
+    });
   }, []);
 
   function checkPlayed(newData) {
-    let recent = moment(newData[newData.length-1].date).format("DD-MM-YYYY");
+    let recent = newData[newData.length - 1].date;
     let today = moment(Date.now()).format("DD-MM-YYYY");
     if (today === recent) return true;
     return false;
-  }
-
-  function doneGame(dailyData) {
-    setScreenState('data')
-    // setData([...data, dailyData])
   }
 
   function ToShow() {
@@ -62,9 +54,8 @@ function App() {
               questions={questions}
               dailyData={dailyData}
               setScreenState={setScreenState}
-              doneGame={doneGame}
-              data = {data}
-              setData= {setData}
+              data={data}
+              setData={setData}
             />
           </div>
         );
@@ -72,21 +63,25 @@ function App() {
         if (data.length) {
           return (
             <div>
-              <DataPage data={data}/>
+              <DataPage data={data} />
             </div>
           );
         } else {
           return <div>No data yet</div>;
         }
       default:
-        return <div className = "wrong">Something went Wrong :( <br /> No Internet? Try Reloading...?</div>;
+        return (
+          <div className="wrong">
+            Something went Wrong :( <br />  May be a jSerice issue, Try Reloading... <br> Didn't work? No Internet? </br>
+          </div>
+        );
     }
   }
 
   return (
     <div className="JEO">
       <div className="title">
-        <img className="title" src={JeoPhoto} alt = "JEOPARDAY"/>
+        <img className="title" src={JeoPhoto} alt="JEOPARDAY" />
       </div>
       <ToShow />
     </div>

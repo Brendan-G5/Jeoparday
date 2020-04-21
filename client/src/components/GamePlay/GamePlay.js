@@ -5,7 +5,7 @@ import moment from "moment";
 const JeoHost = require("../../assets/JeoHost.png");
 const JeoCont = require("../../assets/JeoCont.png");
 
-function GamePlay({ questions, dailyData, setScreenState, doneGame, data }) {
+function GamePlay({ questions, dailyData, setScreenState, data }) {
   const [answer, setAnswer] = useState("");
   const [counter, setCounter] = useState(0);
   const [gameType, setGameType] = useState();
@@ -22,7 +22,7 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame, data }) {
             return (
               <div className="results-page">
                 <div className="result">{dailyData.result}/5</div>
-                <div className="view-data" onClick={() => viewData(dailyData)}>
+                <div className="view-data" onClick={() => viewData()}>
                   View Data
                 </div>
               </div>
@@ -56,9 +56,9 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame, data }) {
       setGameType(counter + 1);
     } else {
       let temp = data;
-      temp.push(dailyData)
-      temp.date = moment(temp.date).format("DD-MM-YYYY")
-      localStorage.setItem("userJeoData", JSON.stringify(temp))
+      dailyData.date = moment(dailyData.date).format("DD-MM-YYYY");
+      temp.push(dailyData);
+      localStorage.setItem("userJeoData", JSON.stringify(temp));
       setGameType("results");
     }
     setCounter(counter + 1);
@@ -76,27 +76,28 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame, data }) {
 
   function checkAllAnswers(userAns, compAns) {
     userAns = prettyWord(userAns);
-    compAns = prettyWord(compAns)
+    compAns = prettyWord(compAns);
     userAns = userAns.replace(/\s/g, "");
+    userAns = userAns.replace(/[^\w]|_/g, "");
     compAns = compAns.replace(/[^\w]|_/g, "");
+    console.log(compAns, userAns)
     if (compAns === userAns) return true;
     return false;
   }
 
-  let wordstoRemove = ['a', 'the', 'an'];
+  let wordstoRemove = ["a", "the", "an"];
 
   function prettyWord(word) {
-    word = word.toLowerCase()
+    word = word.toLowerCase();
     word = " " + word + " ";
-    for (let i=0; i<wordstoRemove.length; i++) {
-      word.replace(" "+wordstoRemove[i]+" ", "");
+    for (let i = 0; i < wordstoRemove.length; i++) {
+      word = word.replace(" "+wordstoRemove[i]+" ", "");
     }
     return word;
   }
 
-  async function viewData(dailyData) {
-    setScreenState("load");
-    doneGame(dailyData);
+  async function viewData() {
+    setScreenState("data");
   }
 
   function handleChange(event) {
@@ -115,7 +116,7 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame, data }) {
       </div>
       <div className="mid-level">
         <div className="cartoon">
-          <img src={JeoHost} alt ="JEOHOST" />
+          <img src={JeoHost} alt="JEOHOST" />
         </div>
         <div className="holder">
           <div className="question-spot">{GameBoard(gameType)}</div>
@@ -129,7 +130,7 @@ function GamePlay({ questions, dailyData, setScreenState, doneGame, data }) {
           </form>
         </div>
         <div className="cartoon">
-          <img src={JeoCont} alt ="JEOCONT" />
+          <img src={JeoCont} alt="JEOCONT" />
         </div>
       </div>
     </div>

@@ -4,7 +4,6 @@ import "c3/c3.css";
 const c3 = require("c3");
 
 function LineChart({ data, colors }) {
-
   let dataDates = [];
   let dataResults = [];
   let dataTitles = [];
@@ -81,7 +80,7 @@ function LineChart({ data, colors }) {
         },
       },
       point: {
-        r: function(d) {
+        r: function (d) {
           if (d.id === "Regression") return false;
           return 3.5;
         },
@@ -104,39 +103,38 @@ function LineChart({ data, colors }) {
     });
   }
 
-
   function CreateBestFit(chartData) {
     const x_vals = [];
     const y_vals = [];
-    let startingDate = Date.parse(chartData[0].values[0].x)
-    chartData[0].values.map((val)=> {
-      const date = Date.parse(val.x) - startingDate
+    let startingDate = Date.parse(chartData[0].values[0].x);
+    chartData[0].values.map((val) => {
+      const date = Date.parse(val.x) - startingDate;
       x_vals.push(date);
-      y_vals.push(val.value)
+      y_vals.push(val.value);
       return true;
-    })
-    const x_mean = meanFinder(x_vals)
-    const y_mean = meanFinder(y_vals)
+    });
+    const x_mean = meanFinder(x_vals);
+    const y_mean = meanFinder(y_vals);
     const xy_vals = [];
     const xx_vals = [];
-    for (let i=0; i< x_vals.length; i++) {
-      xy_vals.push(x_vals[i]*y_vals[i]);
-      xx_vals.push(Math.pow(x_vals[i],2));
+    for (let i = 0; i < x_vals.length; i++) {
+      xy_vals.push(x_vals[i] * y_vals[i]);
+      xx_vals.push(Math.pow(x_vals[i], 2));
     }
     const xy_mean = meanFinder(xy_vals);
     const xx_mean = meanFinder(xx_vals);
-    const m = (((x_mean*y_mean) - xy_mean) / ((x_mean*y_mean) - xx_mean));
-    const b = y_mean - m*x_mean;
+    const m = (x_mean * y_mean - xy_mean) / (x_mean * y_mean - xx_mean);
+    const b = y_mean - m * x_mean;
     const bestFitData = [];
-    for (let i =0; i<x_vals.length; i++) {
-      bestFitData.push(b + m*x_vals[i])
+    for (let i = 0; i < x_vals.length; i++) {
+      bestFitData.push(b + m * x_vals[i]);
     }
     return bestFitData;
   }
 
   function meanFinder(vals) {
-    let sum = vals.reduce((a,b) => a+b, 0)
-    return sum/vals.length
+    let sum = vals.reduce((a, b) => a + b, 0);
+    return sum / vals.length;
   }
 
   return (
