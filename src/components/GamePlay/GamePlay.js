@@ -22,12 +22,12 @@ function GamePlay({ questions, dailyData, setScreenState, data }) {
             return (
               <div className="results-page">
                 <div className="result">{dailyData.result}/5</div>
-                <div
+                <button
                   className="view-data"
                   onClick={() => setScreenState("data")}
                 >
                   View Data
-                </div>
+                </button>
               </div>
             );
           case "done":

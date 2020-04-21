@@ -1,9 +1,16 @@
 {
-  "name": "My Extension",
-  "version": "1.0",
+  "short_name": "Jeoparday",
+  "name": "Jeoparday",
   "manifest_version": 2,
   "browser_action": {
-      "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_title": "React Ext"
   },
-  "content_security_policy": "script-src 'self' 'sha256-GgRxrVOKNdB4LrRsVPDSbzvfdV4UqglmviH9GoBJ5jk='; object-src 'self'"
+  "version": "1.0",
+  "content_security_policy": "script-src 'self' 'sha256-GgRxrVOKNdB4LrRsVPDSbzvfdV4UqglmviH9GoBJ5jk='; object-src 'self'",
+  "icons": {
+    "16": "jeo16.png",
+    "48": "jeo48.png",
+    "128": "jeo128.png"
+  }
 }
