@@ -59,6 +59,7 @@
   align-self: center;
   max-height: 100px;
   min-height: 30px;
+  border-radius: 5px;
 }
 
 .toStart, .view-data {
