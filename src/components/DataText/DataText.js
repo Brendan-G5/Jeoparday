@@ -95,18 +95,18 @@ function DataText({ data, changeSelector }) {
         </div>
         <div className="view-2">
           <button className="view-button" onClick={() => changeSelector(10)}>
-            Past 10 Games
+           Last 10
           </button>
           <button className="view-button" onClick={() => changeSelector(50)}>
-            Past 50 Games
+           Last 50
           </button>
         </div>
         <div className="view-3">
           <button className="view-button" onClick={() => changeSelector(100)}>
-            Past 100 Games
+            Last 100
           </button>
           <button className="view-button" onClick={() => changeSelector(200)}>
-            Past 200 Games
+            Last 200
           </button>
         </div>
       </div>

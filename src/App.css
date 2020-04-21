@@ -12,8 +12,11 @@
 }
 
 html {
+  background-image: url("./assets/jeoBackground.png");
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   background-color: black;
-  overflow-x: hidden;
 }
 
 body {
@@ -23,7 +26,7 @@ body {
 .title {
   align-self: center;
   display: block;
-  max-width:90vw;
+  max-width:70vw;
   max-height:25vh;
   width: auto;
   height: auto;

@@ -124,7 +124,7 @@ function LineChart({ data, colors }) {
     const xy_mean = meanFinder(xy_vals);
     const xx_mean = meanFinder(xx_vals);
     const m = (x_mean * y_mean - xy_mean) / (x_mean * y_mean - xx_mean);
-    const b = y_mean - m * x_mean;
+    const b = y_mean - (m * x_mean);
     const bestFitData = [];
     for (let i = 0; i < x_vals.length; i++) {
       bestFitData.push(b + m * x_vals[i]);
