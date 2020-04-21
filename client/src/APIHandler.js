@@ -51,4 +51,4 @@ function shuffleArray(array) {
   }
 }
 
-module.exports = getQuestions;
+export default getQuestions;
