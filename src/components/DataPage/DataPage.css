@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   color:white;
+  /*width: 800px;*/ /* this is used only for teh chrome extension
 }
+
 
 .come-back {
   text-align: center;
