@@ -27,6 +27,6 @@ This app was created using create-react-app and local storage to hold the data. 
 
 ## Tech Stack
 
-To make Jeoparday I used React with create-react-app and used local storage to hold the user data.  The scatter plot and pie chart were made using C3 and react-c3js respectively. All of the information for the questions and anwsers came from the [jService API](http://jservice.io/)
+To make Jeoparday I used React with create-react-app and used local storage to hold the user data.  The scatter plot and pie chart were made using C3 and react-c3js respectively. All of the information for the questions and anwsers came from the [jService API](http://jservice.io/).
 
 To Demo the app, clone the repo and run npm start from the root directory. You can then play your first day of Jeoparday! (Getting the chrome extension will be easier once it is up)
