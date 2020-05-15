@@ -30,4 +30,8 @@ To make Jeoparday I used React with create-react-app and used local storage to h
 
 ## Installation
 
-At the moment the only way to play Jeoparday is to clone this repo on your computer run npm 
+At the moment the only way to play Jeoparday is to clone this repo on your computer and run from there. Use the following commands to do so. 
+
+```bash
+   git clone
+```
