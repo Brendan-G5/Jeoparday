@@ -1,6 +1,6 @@
 # JEOPARDAY! 
 
-Description: This is a game app that gives you daily Jeoparday style questions! Once you've anwsered your daily set of questions you can then see your data visulized to track your progress on app. 
+This is a game app that gives you daily Jeoparday style questions! Once you've anwsered your daily set of questions you can then see your data visulized to track your progress. 
 
 ## What it does: 
 
