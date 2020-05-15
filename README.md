@@ -46,7 +46,10 @@ But this isn't a nice format long term is it...
 ~~Nothing is ever finished~~ This app is finished but could use some touch ups.
 
 ..* jService can sometimes have answers/questions in weird formats, while the app corrects for most, it does not do all.
+
 ..* It would be lovely to add a average score value on the data page.
 ..* The manifest.json is made and i have the app working as a chrome extension on my laptop, but the spacing is off when running in a chrome extension pop-down, upon fixing that the app could go on the chome store and be much more accessible.
+
 ..* Using local storage isn't really ideal... creating a db as I  originally had planned for (and halfway finished) would be much better for speed/performance.
+
 ..* On top of that last point using a data base and deploying with heroku would me to set up a leaderboard page, keeping track of the top players around the world!
