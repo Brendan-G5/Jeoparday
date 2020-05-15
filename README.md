@@ -16,7 +16,7 @@ Description: This is a game app that gives you daily Jeoparday style questions! 
 
 ![](images/Jeoparday3.png)
 
-#### 4. Your data page holds all your past game stats including your longest streak (Number of days played in a row), your  current streak, the number of 5/5 games you've had and the total number of games you've played.  The visulizations inclue a pie chart indicating the percentages of your daily scores and a scatter plot showing your score against time. A line of best fit in included to help display a trend.
+#### 4. Your data page holds all your past game stats including your longest streak (Number of days played in a row), your  current streak, the number of 5/5 games you've had and the total number of games you've played.  The visulizations inclue a pie chart indicating the percentages of your daily scores and a scatter plot showing your score against time. Hovering over a dot will display the category you faced on that day. A line of best fit in included to help display a trend.
 
 ![](images/Jeoparday4.png)
 
@@ -24,5 +24,9 @@ Description: This is a game app that gives you daily Jeoparday style questions! 
 
 ![](images/Jeoparday5.png)
 This app was created using create-react-app and local storage to hold the data.  The charts were made with C3 and react-c3js. Quesitions and answers come from the jService API.
+
+## Tech Stack
+
+To make Jeoparday I used React with create-react-app and used local storage to hold the user data.  The scatter plot and pie chart were made using C3 and react-c3js respectively. All of the information for the questions and anwsers came from the [jService API](http://jservice.io/)
 
 To Demo the app, clone the repo and run npm start from the root directory. You can then play your first day of Jeoparday! (Getting the chrome extension will be easier once it is up)
