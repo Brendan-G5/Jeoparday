@@ -1,4 +1,12 @@
-Description: This app allows you to play a Column of jeoparday with a differnet column everyday.  The application has been made into a chrome extension, availble at ...(Not on chrome store yet).
+JEOPARDAY! 
+
+Description: This is a Chrome extension that gives you daily Jeoparday style questions! Once you've anwsered your daily set of questions you can then see your data visulized to track your progress on app. 
+
+How it Works: 
+
+1. Open opening the App you'll be faced with the questions page, Simply Press "Play" to begin your first game. 
+
+![](images/Jeoparday1.png)
 
 Simply download the chome extension from the store to use in your browser.
 
