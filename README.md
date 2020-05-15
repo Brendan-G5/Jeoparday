@@ -54,4 +54,4 @@ But this isn't a nice format long term is it...
 
 - On top of that last point using a database and deploying with heroku would allow me to set up a leaderboard page, keeping track of the top players around the world!
 
--A way to stop people from googling would be cool, i am hestiant to add a timer due to those of us that can't spell.
+- A way to stop people from googling would be cool, i am hestiant to add a timer due to those of us that can't spell.
