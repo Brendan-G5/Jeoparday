@@ -1,4 +1,4 @@
-#JEOPARDAY! 
+# JEOPARDAY! 
 
 Description: This is a Chrome extension that gives you daily Jeoparday style questions! Once you've anwsered your daily set of questions you can then see your data visulized to track your progress on app. 
 
