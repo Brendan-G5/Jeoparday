@@ -23,10 +23,11 @@ Description: This is a game app that gives you daily Jeoparday style questions! 
 #### 5. You can also choose a subsection of data to visulize (last 10 games for example). The pie chart and scatter plot will update accordingly.
 
 ![](images/Jeoparday5.png)
-This app was created using create-react-app and local storage to hold the data.  The charts were made with C3 and react-c3js. Quesitions and answers come from the jService API.
 
 ## Tech Stack
 
 To make Jeoparday I used React with create-react-app and used local storage to hold the user data.  The scatter plot and pie chart were made using C3 and react-c3js respectively. All of the information for the questions and anwsers came from the [jService API](http://jservice.io/).
 
-To Demo the app, clone the repo and run npm start from the root directory. You can then play your first day of Jeoparday! (Getting the chrome extension will be easier once it is up)
+## Installation
+
+At the moment the only way to play Jeoparday is to clone this repo on your computer run npm 
