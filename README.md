@@ -32,7 +32,7 @@ To make Jeoparday I used React with create-react-app and used local storage to h
 
 **NEW:** Deployed on Netlify until I implement a backend. Link [HERE](https://jeoparday.netlify.app/)
 
-At the moment the only way to play Jeoparday is to clone this repo on your computer and run from there. Use the following commands to do so. 
+You can also clone the repositiry on your computer and run from there (why...). Use the following commands to do so. 
 
 ```bash
    git clone https://github.com/Brendan-G5/Jeoparday.git
