@@ -17,7 +17,6 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    localStorage.clear()
     let userData = JSON.parse(localStorage.getItem("userJeoData") || "[]");
     setData(userData);
     if (userData.length && checkPlayed(userData)) {
