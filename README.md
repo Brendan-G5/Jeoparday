@@ -41,7 +41,6 @@ You can also clone the repositiry on your computer and run from there (why...). 
 ```
 
 This should open up the app and be ready to play!  
-~~But this isn't a nice format long term is it...~~
 
 ## Future Goals and Improvments
 
@@ -57,6 +56,10 @@ This should open up the app and be ready to play!
 - On top of that last point using a database and deploying with heroku would allow me to set up a leaderboard page, keeping track of the top players around the world!
 
 - A way to stop people from googling would be cool, I am hestiant to add a timer due to those of us that can't spell.
+
+- A notification system that reminds you to play.
+
+- Eventually it would be nice to have this as a chome extension.
 
 ## Contributors
 
