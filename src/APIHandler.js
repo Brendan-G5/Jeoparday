@@ -1,7 +1,7 @@
-const BASE_URL = "https://jservice.io/api";
+const BASE_URL = 'https://jservice.io/api';
 
 async function getQuestions() {
-  const randomQuestion = await fetchRequest("/random");
+  const randomQuestion = await fetchRequest('/random');
   const questions = await fetchRequest(
     `/category/?id=${randomQuestion[0].category_id}`
   );
@@ -9,7 +9,13 @@ async function getQuestions() {
   const questionsToGo = [];
   const takenAnswer = [];
   questionList.forEach(function (Q) {
-    if (Q.invalid_count === null && !takenAnswer.includes(Q.answer)) {
+    if (
+      Q.invalid_count === null &&
+      !takenAnswer.includes(Q.answer) &&
+      !Q.question.toLowerCase().includes('seen here') &&
+      Q.question &&
+      Q.answer
+    ) {
       questionsToGo.push(Q);
       takenAnswer.push(Q.answer);
     }
@@ -27,6 +33,7 @@ async function getQuestions() {
       date: Date.now(),
       result: 0,
     };
+    console.log(finalQs)
     return [dailyObj, finalQs];
   } else {
     getQuestions();
@@ -38,7 +45,7 @@ function fetchRequest(path, options) {
     .then((res) => (res.status <= 400 ? res.json() : Promise.reject(res)))
     .catch((err) => {
       console.log(err); // eslint-disable-line no-console
-      console.log("error during fetch request"); // eslint-disable-line no-console
+      console.log('error during fetch request'); // eslint-disable-line no-console
     });
 }
 

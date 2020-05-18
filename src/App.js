@@ -6,6 +6,8 @@ import DataPage from "./components/DataPage/DataPage";
 
 const JeoPhoto = require("./assets/Jeoparday.png");
 const moment = require("moment");
+const github = require("./assets/githubicon.png");
+const linkedin = require("./assets/linkedinicon.png");
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    localStorage.clear()
     let userData = JSON.parse(localStorage.getItem("userJeoData") || "[]");
     setData(userData);
     if (userData.length && checkPlayed(userData)) {
@@ -71,7 +74,7 @@ function App() {
       default:
         return (
           <div className="wrong">
-            Something went Wrong :( <br />  May be a jSerice issue, Try Reloading... <br> Didn't work? No Internet? </br>
+            Something went Wrong :( <br/>  It likely had issues fetching the questions, Try Reloading... <br/> Didn't work? No Internet?  <br/>
           </div>
         );
     }
@@ -83,6 +86,11 @@ function App() {
         <img className="title" src={JeoPhoto} alt="JEOPARDAY" />
       </div>
       <ToShow />
+      <div className="contributors">
+        <a href='https://github.com/Brendan-G5'><img className ="links" src = {github} alt = 'github'/></a>
+        <a href='https://www.linkedin.com/in/brendan-garvey/'><img className ="links" src = {linkedin} alt = 'linkedin'/></a>
+        <div className='myname'>Brendan Garvey</div>
+      </div>
     </div>
   );
 }
