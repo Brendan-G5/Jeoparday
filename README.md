@@ -30,7 +30,9 @@ To make Jeoparday I used React with create-react-app and used local storage to h
 
 ## Installation
 
-At the moment the only way to play Jeoparday is to clone this repo on your computer and run from there. Use the following commands to do so. 
+**NEW:** Deployed on Netlify until I implement a backend. Link [HERE](https://jeoparday.netlify.app/)
+
+You can also clone the repositiry on your computer and run from there (why...). Use the following commands to do so. 
 
 ```bash
    git clone https://github.com/Brendan-G5/Jeoparday.git
@@ -39,7 +41,6 @@ At the moment the only way to play Jeoparday is to clone this repo on your compu
 ```
 
 This should open up the app and be ready to play!  
-But this isn't a nice format long term is it...
 
 ## Future Goals and Improvments
 
@@ -55,6 +56,10 @@ But this isn't a nice format long term is it...
 - On top of that last point using a database and deploying with heroku would allow me to set up a leaderboard page, keeping track of the top players around the world!
 
 - A way to stop people from googling would be cool, I am hestiant to add a timer due to those of us that can't spell.
+
+- A notification system that reminds you to play.
+
+- Eventually it would be nice to have this as a chome extension.
 
 ## Contributors
 
