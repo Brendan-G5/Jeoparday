@@ -1,0 +1,62 @@
+.log-box{
+  background-color: white;
+  display: flex;
+  width: 40%;
+  margin: auto;
+  margin-top: 5rem;
+  flex-direction: row;
+  padding: 20px;
+  height: 15rem;
+  border-radius: 15px;
+  background-color: #104e69;
+  color: white
+}
+
+.title {
+  align-self: center;
+  display: block;
+  max-width:70vw;
+  max-height:25vh;
+  width: auto;
+  height: auto;
+  margin: auto;
+}
+
+input {
+  width: 100%
+}
+
+.input-area {
+  flex: 2;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.change-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 20px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.reg-button {
+  background-color: #E29930;
+  width: 100%;
+  text-align: center;
+}
+
+.divider {
+  width: 2px;
+  margin: 6px 0;
+  background: black;
+}
+
+button {
+  margin: 10px;
+  background-color: #E29930;
+  border-radius: 10px;
+}
