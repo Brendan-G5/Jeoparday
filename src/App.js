@@ -5,7 +5,7 @@ import SignIn from './components/SignIn/SignIn'
 
 
 function App() {
-  const user = true; //This will change for when firebase is set up
+  const user = false; //This will change for when firebase is set up
   return (
     user ?
     <Jeoparday/>
