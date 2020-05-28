@@ -49,9 +49,10 @@ This should open up the app and be ready to play!
 - jService can sometimes have answers/questions in weird formats, while the app corrects for most, it does not do all.
 
 - It would be lovely to add a average score value on the data page.
+
 - The manifest.json is made and i have the app working as a chrome extension on my laptop, but the spacing is off when running in a chrome extension pop-down, upon fixing that the app could go on the chome store and be much more accessible.
 
-- Using local storage isn't really ideal... creating a db as I  originally had planned for (and halfway finished) would be much better for speed/performance.
+- Using local storage isn't really ideal... creating a db as I  originally had planned for (and halfway finished) would be much better for speed/performance/longevity.
 
 - On top of that last point using a database and deploying with heroku would allow me to set up a leaderboard page, keeping track of the top players around the world! 
 
